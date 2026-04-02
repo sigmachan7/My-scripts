@@ -3,64 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Script Page | Frosty Scripts</title>
+    <title>Scripts | Frosty Scripts</title>
     <style>
-        /* --- Page Layout --- */
+        /* Base Setup */
         body {
             margin: 0;
             padding: 20px;
-            background-color: #0b0e14;
-            color: white;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background-color: #add8e6; /* Light Blue Background */
+            color: #1a1e26;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         h1 {
-            font-family: 'Segoe UI', sans-serif;
-            text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
-            z-index: 10;
-        }
-
-        /* --- Script Display Box --- */
-        .script-box {
-            background: #161b22;
-            border: 2px solid #00c6ff;
-            border-radius: 12px;
-            padding: 20px;
-            width: 90%;
-            max-width: 550px;
-            box-shadow: 0 0 20px rgba(0, 198, 255, 0.2);
-            position: relative;
-            z-index: 10;
+            font-size: 2.2rem;
+            color: #005f73;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
             margin-bottom: 20px;
+            z-index: 10;
         }
 
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            max-width: 450px;
+            z-index: 10;
+        }
+
+        /* Script Section Box */
+        .script-card {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            border: 2px solid #0072ff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .script-img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #0072ff;
+            margin: 5px 0;
+        }
+
+        /* The Code Box */
+        .code-box {
+            background: #1a1e26; /* Dark box for code contrast */
             color: #00ffcc;
-            font-size: 0.9rem;
-            margin: 0;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            margin: 10px 0;
+            text-align: left;
         }
 
-        /* --- Copy Button --- */
+        /* Copy Button */
         .copy-btn {
             background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
             color: white;
             border: none;
-            padding: 15px 35px;
+            padding: 10px 25px;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.1rem;
             cursor: pointer;
-            z-index: 10;
             transition: 0.2s;
-            box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
         }
 
         .copy-btn:active {
@@ -83,15 +105,14 @@
 
         @keyframes fall {
             0% { top: -10%; transform: translateX(0); }
-            100% { top: 110%; transform: translateX(100px); }
+            100% { top: 110%; transform: translateX(80px); }
         }
 
-        /* Variety of speeds for the script page */
-        .snowflake:nth-of-type(1) { left: 10%; animation-duration: 3.2s; }
-        .snowflake:nth-of-type(2) { left: 25%; animation-duration: 4.5s; animation-delay: 1s; }
-        .snowflake:nth-of-type(3) { left: 45%; animation-duration: 3.8s; animation-delay: 0.5s; }
-        .snowflake:nth-of-type(4) { left: 65%; animation-duration: 5.2s; animation-delay: 2s; }
-        .snowflake:nth-of-type(5) { left: 85%; animation-duration: 3.5s; animation-delay: 1.2s; }
+        .snowflake:nth-of-type(1) { left: 10%; animation-duration: 3s; }
+        .snowflake:nth-of-type(2) { left: 30%; animation-duration: 4s; }
+        .snowflake:nth-of-type(3) { left: 50%; animation-duration: 3.5s; }
+        .snowflake:nth-of-type(4) { left: 70%; animation-duration: 4.5s; }
+        .snowflake:nth-of-type(5) { left: 90%; animation-duration: 3.2s; }
     </style>
 </head>
 <body>
@@ -102,19 +123,31 @@
     <div class="snowflake">❅</div>
     <div class="snowflake">❆</div>
 
-    <h1>Copy Your Script</h1>
+    <h1>Your Scripts</h1>
 
-    <div class="script-box">
-        <pre id="myScript">loadstring(game:HttpGet("https://cdn.sourceb.in/bins/qiqlxejs9F/0"))()</pre>
+    <div class="container">
+        
+        <div class="script-card">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="script-img" alt="Steal a Brainrot">
+            <h2>Steal a Brainrot</h2>
+            <div class="code-box" id="code1">loadstring(game:HttpGet("https://cdn.sourceb.in/bins/qiqlxejs9F/0"))()</div>
+            <button class="copy-btn" onclick="copyText('code1')">COPY SCRIPT</button>
+        </div>
+
+        <div class="script-card">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="script-img" alt="Sailor Piece">
+            <h2>Sailor Piece</h2>
+            <div class="code-box" id="code2">loadstring(game:HttpGet("https://cdn.sourceb.in/bins/wxmedUGduX/0"))()</div>
+            <button class="copy-btn" onclick="copyText('code2')">COPY SCRIPT</button>
+        </div>
+
     </div>
 
-    <button class="copy-btn" onclick="copyText()">COPY TO CLIPBOARD</button>
-
     <script>
-        function copyText() {
-            const text = document.getElementById("myScript").innerText;
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert("Script Copied!");
+                alert("Copied to clipboard!");
             });
         }
     </script>
