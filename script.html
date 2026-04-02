@@ -1,38 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Script Unlocked! ✅</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-sky-100 p-6 flex flex-col items-center font-sans min-h-screen">
-    <h1 class="text-3xl font-black text-sky-600 mt-12 uppercase text-center">Script Unlocked! ✅</h1>
-    
-    <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-sm mt-8 border-4 border-white">
-        <p class="text-[10px] font-black text-sky-400 mb-2 uppercase tracking-widest">Steal A Brainrot Script:</p>
-        
-        <div id="codeBox" class="bg-sky-900 text-sky-200 p-4 rounded-2xl text-[11px] font-mono break-all mb-6 border border-sky-700 shadow-inner">
-            loadstring(game:HttpGet("https://cdn.sourceb.in/bins/qiqlxejs9F/0"))()
-        </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Script - Frosty Scripts</title>
+    <style>
+        /* General Theme */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #0b0e14;
+            color: white;
+            font-family: 'Courier New', Courier, monospace; /* Script-style font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        <button onclick="copyScript(this)" class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-2xl font-black uppercase shadow-lg transition-all active:scale-95">
-            Copy Script 📋
-        </button>
-        
-        <a href="index.html" class="block text-center mt-6 text-sky-400 text-xs font-bold hover:text-sky-600 uppercase">← Back to Home</a>
+        /* Snowflake Animation */
+        .snowflake {
+            color: #fff;
+            font-size: 1em;
+            position: fixed;
+            top: -10%;
+            z-index: 1;
+            user-select: none;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+        }
+
+        @keyframes snowflakes-fall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes snowflakes-shake {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(80px); }
+            100% { transform: translateX(0px); }
+        }
+
+        /* Box for the actual Script */
+        .script-container {
+            background-color: #1a1e26;
+            border: 2px solid #00c6ff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(0, 198, 255, 0.3);
+            z-index: 2;
+            overflow-x: auto;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #00ffcc;
+        }
+
+        .copy-btn {
+            margin-top: 20px;
+            background: #00c6ff;
+            color: black;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Snowflake positions */
+        .snowflake:nth-of-type(1) { left: 10%; animation-delay: 1s, 1s; }
+        .snowflake:nth-of-type(2) { left: 25%; animation-delay: 6s, 0.5s; }
+        .snowflake:nth-of-type(3) { left: 40%; animation-delay: 4s, 2s; }
+        .snowflake:nth-of-type(4) { left: 60%; animation-delay: 2s, 2s; }
+        .snowflake:nth-of-type(5) { left: 80%; animation-delay: 8s, 3s; }
+    </style>
+</head>
+<body>
+
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+
+    <h1>The Script</h1>
+
+    <div class="script-container">
+        <pre id="scriptContent">
+-- loadstring(game:HttpGet("https://cdn.sourceb.in/bins/qiqlxejs9F/0"))() --
+print("Frosty Scripts Loaded!")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/..."))()
+        </pre>
     </div>
 
+    <button class="copy-btn" onclick="copyScript()">Copy Script</button>
+
     <script>
-        function copyScript(btn) {
-            const code = document.getElementById('codeBox').innerText;
-            navigator.clipboard.writeText(code);
-            btn.innerText = "COPIED! ✅";
-            btn.style.background = "#059669";
-            setTimeout(() => {
-                btn.innerText = "COPY SCRIPT 📋";
-                btn.style.background = "#0ea5e9";
-            }, 2000);
+        function copyScript() {
+            const text = document.getElementById('scriptContent').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Script copied to clipboard!");
         }
     </script>
+
 </body>
 </html>
