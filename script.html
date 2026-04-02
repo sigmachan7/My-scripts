@@ -3,114 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Script - Frosty Scripts</title>
+    <title>Script Page | Frosty Scripts</title>
     <style>
-        /* General Theme */
+        /* --- Page Layout --- */
         body {
             margin: 0;
             padding: 20px;
             background-color: #0b0e14;
             color: white;
-            font-family: 'Courier New', Courier, monospace; /* Script-style font */
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* Snowflake Animation */
-        .snowflake {
-            color: #fff;
-            font-size: 1em;
-            position: fixed;
-            top: -10%;
-            z-index: 1;
-            user-select: none;
-            animation-name: snowflakes-fall, snowflakes-shake;
-            animation-duration: 10s, 3s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
+        h1 {
+            font-family: 'Segoe UI', sans-serif;
+            text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+            z-index: 10;
         }
 
-        @keyframes snowflakes-fall {
-            0% { top: -10%; }
-            100% { top: 100%; }
-        }
-
-        @keyframes snowflakes-shake {
-            0% { transform: translateX(0px); }
-            50% { transform: translateX(80px); }
-            100% { transform: translateX(0px); }
-        }
-
-        /* Box for the actual Script */
-        .script-container {
-            background-color: #1a1e26;
+        /* --- Script Display Box --- */
+        .script-box {
+            background: #161b22;
             border: 2px solid #00c6ff;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 20px;
             width: 90%;
-            max-width: 600px;
-            margin-top: 30px;
-            box-shadow: 0 0 15px rgba(0, 198, 255, 0.3);
-            z-index: 2;
-            overflow-x: auto;
+            max-width: 550px;
+            box-shadow: 0 0 20px rgba(0, 198, 255, 0.2);
+            position: relative;
+            z-index: 10;
+            margin-bottom: 20px;
         }
 
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
             color: #00ffcc;
+            font-size: 0.9rem;
+            margin: 0;
         }
 
+        /* --- Copy Button --- */
         .copy-btn {
-            margin-top: 20px;
-            background: #00c6ff;
-            color: black;
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            color: white;
             border: none;
-            padding: 10px 25px;
+            padding: 15px 35px;
+            border-radius: 50px;
             font-weight: bold;
-            border-radius: 5px;
+            font-size: 1.1rem;
             cursor: pointer;
-            z-index: 2;
+            z-index: 10;
+            transition: 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
         }
 
         .copy-btn:active {
             transform: scale(0.95);
         }
 
-        /* Snowflake positions */
-        .snowflake:nth-of-type(1) { left: 10%; animation-delay: 1s, 1s; }
-        .snowflake:nth-of-type(2) { left: 25%; animation-delay: 6s, 0.5s; }
-        .snowflake:nth-of-type(3) { left: 40%; animation-delay: 4s, 2s; }
-        .snowflake:nth-of-type(4) { left: 60%; animation-delay: 2s, 2s; }
-        .snowflake:nth-of-type(5) { left: 80%; animation-delay: 8s, 3s; }
+        /* --- FAST RANDOM SNOW --- */
+        .snowflake {
+            color: #fff;
+            font-size: 1.5em;
+            position: fixed;
+            top: -10%;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -10%; transform: translateX(0); }
+            100% { top: 110%; transform: translateX(100px); }
+        }
+
+        /* Variety of speeds for the script page */
+        .snowflake:nth-of-type(1) { left: 10%; animation-duration: 3.2s; }
+        .snowflake:nth-of-type(2) { left: 25%; animation-duration: 4.5s; animation-delay: 1s; }
+        .snowflake:nth-of-type(3) { left: 45%; animation-duration: 3.8s; animation-delay: 0.5s; }
+        .snowflake:nth-of-type(4) { left: 65%; animation-duration: 5.2s; animation-delay: 2s; }
+        .snowflake:nth-of-type(5) { left: 85%; animation-duration: 3.5s; animation-delay: 1.2s; }
     </style>
 </head>
 <body>
 
     <div class="snowflake">❅</div>
     <div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
     <div class="snowflake">❅</div>
     <div class="snowflake">❆</div>
-    <div class="snowflake">❅</div>
 
-    <h1>The Script</h1>
+    <h1>Copy Your Script</h1>
 
-    <div class="script-container">
-        <pre id="scriptContent">
-loadstring(game:HttpGet("https://cdn.sourceb.in/bins/qiqlxejs9F/0"))()
-        </pre>
-    </div
+    <div class="script-box">
+        <pre id="myScript">loadstring(game:HttpGet("https://cdn.sourceb.in/bins/qiqlxejs9F/0"))()</pre>
+    </div>
 
-    <button class="copy-btn" onclick="copyScript()">Copy Script</button>
+    <button class="copy-btn" onclick="copyText()">COPY TO CLIPBOARD</button>
 
     <script>
-        function copyScript() {
-            const text = document.getElementById('scriptContent').innerText;
-            navigator.clipboard.writeText(text);
-            alert("Script copied to clipboard!");
+        function copyText() {
+            const text = document.getElementById("myScript").innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Script Copied!");
+            });
         }
     </script>
 
