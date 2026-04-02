@@ -4,70 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frosty Scripts</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { 
-            background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%); 
-            color: #0c4a6e; 
-            min-height: 100vh;
-            font-family: sans-serif;
+        /* Background and Font */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0e14;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden; /* Keeps snowflakes inside */
         }
-        .frosty-card { 
-            background: rgba(255, 255, 255, 0.9); 
-            backdrop-filter: blur(8px); 
-            border: 2px solid #ffffff; 
-            border-radius: 24px;
-            box-shadow: 0 15px 30px rgba(186, 230, 253, 0.5);
+
+        /* Image Styling */
+        .header-img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+            margin-bottom: 20px;
+            z-index: 2;
         }
-        .btn-unlock {
-            background: #0ea5e9;
+
+        /* Button Styling */
+        .btn {
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
             color: white;
-            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            z-index: 2;
         }
-        .btn-unlock:active {
-            transform: scale(0.95);
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
         }
+
+        /* Snowflake Animation */
+        .snowflake {
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial;
+            text-shadow: 0 0 1px #000;
+            position: fixed;
+            top: -10%;
+            z-index: 1;
+            user-select: none;
+            cursor: default;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-play-state: running, running;
+        }
+
+        @keyframes snowflakes-fall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+
+        @keyframes snowflakes-shake {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(80px); }
+            100% { transform: translateX(0px); }
+        }
+
+        /* Generating multiple snowflakes with different positions */
+        .snowflake:nth-of-type(0) { left: 1%; animation-delay: 0s, 0s; }
+        .snowflake:nth-of-type(1) { left: 10%; animation-delay: 1s, 1s; }
+        .snowflake:nth-of-type(2) { left: 20%; animation-delay: 6s, 0.5s; }
+        .snowflake:nth-of-type(3) { left: 30%; animation-delay: 4s, 2s; }
+        .snowflake:nth-of-type(4) { left: 40%; animation-delay: 2s, 2s; }
+        .snowflake:nth-of-type(5) { left: 50%; animation-delay: 8s, 3s; }
+        .snowflake:nth-of-type(6) { left: 60%; animation-delay: 6s, 2s; }
+        .snowflake:nth-of-type(7) { left: 70%; animation-delay: 2.5s, 1s; }
+        .snowflake:nth-of-type(8) { left: 80%; animation-delay: 1s, 0s; }
+        .snowflake:nth-of-type(9) { left: 90%; animation-delay: 3s, 1.5s; }
     </style>
 </head>
-<body class="p-6">
+<body>
 
-    <header class="text-center mt-12 mb-10">
-        <h1 class="text-5xl font-black tracking-tight text-sky-600 uppercase">Frosty Scripts</h1>
-        <p class="text-sky-800 font-bold mt-2 tracking-wide text-sm">Experience The Next Level</p>
-    </header>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
 
-    <main class="w-full max-w-sm frosty-card p-6 text-center">
-        <h2 class="text-2xl font-black mb-4 text-sky-900 uppercase">STEAL A BRAINROT</h2>
-        
-        <div class="rounded-2xl overflow-hidden mb-5 border-4 border-white shadow-sm">
-            <img src="https://tr.rbxcdn.com/180DAY-923f6e1f0e4b4494a810f5a706692233/768/432/Image/Webp/Thumbnail" alt="Steal a Brainrot" class="w-full">
-        </div>
+    <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="header-img" alt="Frosty Scripts Logo">
 
-        <div class="flex justify-center items-center gap-2 mb-4">
-            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <span class="font-black text-xs text-green-600 uppercase tracking-widest">Working</span>
-        </div>
+    <h1>Frosty Scripts</h1>
+    <p>Unlock the best scripts below!</p>
 
-        <p class="text-sky-700 text-sm mb-8 font-semibold leading-relaxed">
-            STEAL A BRAINROT script v1. Elite performance. <br>Guaranteed brainrots.
-        </p>
-
-        <a href="https://sub2unlock.io/nIMeB" class="block w-full btn-unlock py-4 rounded-2xl font-black text-lg uppercase tracking-wider mb-6">
-            Unlock Script 🔒
-        </a>
-
-        <div class="border-t border-sky-100 pt-5">
-            <p class="text-2xl italic font-black text-sky-300">Frosty <span class="text-sky-500 text-sm not-italic">v1.0</span></p>
-        </div>
-    </main>
-
-    <footer class="mt-12 text-sky-400 text-[10px] font-bold uppercase tracking-[0.2em]">
-        © Frosty Scripts 2026
-    </footer>
+    <a href="https://sub2unlock.io/nIMeB" class="btn">Get Script Here</a>
 
 </body>
 </html>
