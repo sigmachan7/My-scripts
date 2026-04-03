@@ -49,13 +49,12 @@
         .blue-text { color: #0072ff; }
         .white-text { color: #ffffff; }
 
-        /* CENTERED & VERY BIG SLOGAN */
         .sub-title {
-            font-size: 2.2rem; /* MADE VERY BIG */
+            font-size: 2.2rem; 
             margin: 25px 0;
             font-weight: 900;
             line-height: 1.1;
-            text-align: center; /* APPEAR IN MIDDLE */
+            text-align: center; 
             width: 100%;
         }
 
@@ -69,7 +68,7 @@
             text-align: left;
         }
 
-        /* --- BIG CATEGORY BAR --- */
+        /* --- CATEGORY BAR --- */
         .category-bar {
             display: flex;
             align-items: center;
@@ -175,16 +174,22 @@
         h2 { margin: 8px 0; font-size: 1.3rem; color: #0072ff; font-weight: 900; }
         p { color: #444; font-weight: 700; margin: 5px 0; font-size: 0.85rem; }
 
-        /* --- SNOW --- */
+        /* --- FAST SNOW ANIMATION --- */
         .snowflake { color: #ffffff; font-size: 1.2em; position: fixed; top: -10%; z-index: 1; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall { 0% { top: -10%; transform: translateX(0); } 100% { top: 110%; transform: translateX(var(--drift)); } }
-        .snowflake:nth-of-type(1) { left: 10%; --drift: 40px; animation-duration: 5s; }
-        .snowflake:nth-of-type(2) { left: 50%; --drift: -50px; animation-duration: 7s; }
+        
+        /* FAST DURATIONS */
+        .snowflake:nth-of-type(1) { left: 10%; --drift: 60px; animation-duration: 2s; }
+        .snowflake:nth-of-type(2) { left: 30%; --drift: -40px; animation-duration: 2.5s; }
+        .snowflake:nth-of-type(3) { left: 50%; --drift: 50px; animation-duration: 1.8s; }
+        .snowflake:nth-of-type(4) { left: 70%; --drift: -60px; animation-duration: 2.2s; }
+        .snowflake:nth-of-type(5) { left: 90%; --drift: 30px; animation-duration: 1.9s; }
     </style>
 </head>
 <body>
 
-    <div class="snowflake">❅</div><div class="snowflake">❄</div>
+    <div class="snowflake">❅</div><div class="snowflake">❄</div><div class="snowflake">❆</div>
+    <div class="snowflake">❄</div><div class="snowflake">❅</div>
 
     <div class="header-section">
         <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo" alt="LOGO">
@@ -215,7 +220,7 @@
             <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img" alt="MASTER">
             <div>
                 <span class="box-title">ALL-IN-ONE EXECUTOR WEBSITE📁</span>
-                <span class="box-subtext">EVERY BEST EXECUTORS HERE👆</span>
+                <span class="box-subtext">EVERY BEST EXECUTORS HERE👇</span>
             </div>
         </a>
 
