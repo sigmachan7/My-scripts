@@ -3,65 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frosty Scripts | Home</title>
+    <title>FROSTY SCRIPTS | HOME</title>
     <style>
-        /* Base Setup */
+        /* BASE SETUP */
         body {
             margin: 0;
             padding: 20px;
             background-color: #add8e6; 
-            color: white; /* Default text to white */
+            color: WHITE; 
             font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            text-transform: uppercase; /* FORCES CAPITALIZATION WORLDWIDE */
         }
 
         /* --- HEADER SECTION --- */
         .header-section {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             z-index: 10;
         }
 
         .yt-logo {
-            width: 90px;
-            height: 90px;
-            /* UPDATED: Rounded square instead of circle */
+            width: 100px;
+            height: 100px;
             border-radius: 20px; 
             border: 3px solid #0072ff;
             object-fit: cover;
-            margin-bottom: 10px;
-            box-shadow: 0 0 15px rgba(0, 114, 255, 0.4);
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px rgba(0, 114, 255, 0.5);
         }
 
         .main-title {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 900;
             margin: 0;
+            letter-spacing: 2px;
         }
 
         .blue-text { color: #0072ff; }
         .white-text { color: #ffffff; }
 
         .sub-title {
-            font-size: 1rem;
-            margin: 5px 0;
-            font-weight: 500;
+            font-size: 1.8rem; /* MADE VERY BIG AS REQUESTED */
+            margin: 15px 0;
+            font-weight: 800;
+            line-height: 1.2;
         }
 
         .small-info {
-            font-size: 0.75rem;
-            opacity: 0.9;
-            margin-bottom: 10px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
 
-        .category-bar {
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-top: 10px;
+        /* --- CATEGORY LABELS --- */
+        .category-label {
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
         }
 
         /* --- HEARTBEAT ANIMATION --- */
@@ -80,75 +88,83 @@
             z-index: 10;
         }
 
-        .guide-text {
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-            color: #1a1e26;
-        }
-
-        .guide-blue { color: #0072ff; }
-
         /* --- BOX STYLES --- */
         .master-box, .executor-box {
             display: flex;
             align-items: center;
-            background: white;
+            background: WHITE;
             border-radius: 15px;
-            padding: 12px;
+            padding: 15px;
             text-decoration: none;
             color: #1a1e26;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             animation: slowHeartbeat 3s ease-in-out infinite;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        .master-box { border: 3px solid #ff0000; width: 95%; max-width: 420px; }
-        .executor-box { border: 2px solid #0072ff; width: 90%; max-width: 380px; }
+        .master-box { border: 4px solid #ff0000; width: 95%; max-width: 440px; }
+        .executor-box { border: 2px solid #0072ff; width: 90%; max-width: 400px; }
 
-        .box-img { width: 65px; height: 65px; border-radius: 10px; object-fit: cover; margin-right: 15px; }
-        .box-title { font-weight: bold; font-size: 1.1rem; display: block; }
-        .box-subtext { font-size: 0.85rem; color: #555; display: block; }
+        .box-img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; margin-right: 15px; }
+        .box-title { font-weight: 900; font-size: 1.2rem; display: block; }
+        .box-subtext { font-size: 0.85rem; color: #555; display: block; font-weight: bold; }
 
         /* --- SCRIPT CARDS --- */
         .card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             border: 2px solid #0072ff;
-            border-radius: 20px;
-            padding: 15px;
+            border-radius: 25px;
+            padding: 20px;
             width: 90%;
-            max-width: 350px;
+            max-width: 360px;
             text-align: center;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             animation: slowHeartbeat 3s ease-in-out infinite;
             color: #1a1e26;
+            margin-bottom: 20px;
         }
 
-        .card-img { width: 100%; border-radius: 15px; margin-bottom: 10px; }
+        .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+        
         .btn-red {
             display: inline-block;
             background: #ff0000;
-            color: white;
-            padding: 12px 30px;
+            color: WHITE;
+            padding: 15px 35px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 900;
             border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+            font-size: 1.2rem;
         }
 
+        /* --- WORKING BADGE WITH GREEN DOT --- */
         .status-badge {
-            position: absolute; top: 10px; right: 10px;
-            background: white; padding: 4px 10px; border-radius: 20px;
-            font-size: 0.7rem; font-weight: bold; color: #28a745; border: 1px solid #28a745;
+            position: absolute; top: 15px; right: 15px;
+            background: WHITE; padding: 6px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 900; color: #28a745; 
+            border: 2px solid #28a745;
+            display: flex; align-items: center;
         }
+
+        .green-dot {
+            height: 8px; width: 8px;
+            background-color: #28a745;
+            border-radius: 50%;
+            margin-right: 6px;
+            box-shadow: 0 0 5px #28a745;
+        }
+
+        h2 { margin: 10px 0; font-size: 1.5rem; color: #0072ff; font-weight: 900; }
+        p { color: #444; font-weight: 700; margin: 8px 0; font-size: 0.9rem; }
 
         /* --- SNOW --- */
-        .snowflake { color: #ffffff; font-size: 1.2em; position: fixed; top: -10%; z-index: 1; pointer-events: none; animation: fall linear infinite; }
+        .snowflake { color: #ffffff; font-size: 1.5em; position: fixed; top: -10%; z-index: 1; pointer-events: none; animation: fall linear infinite; }
         @keyframes fall { 0% { top: -10%; transform: translateX(0); } 100% { top: 110%; transform: translateX(var(--drift)); } }
-        .snowflake:nth-of-type(1) { left: 5%; --drift: 40px; animation-duration: 4s; }
-        .snowflake:nth-of-type(2) { left: 50%; --drift: -60px; animation-duration: 6s; }
-        .snowflake:nth-of-type(3) { left: 90%; --drift: 30px; animation-duration: 5s; }
+        .snowflake:nth-of-type(1) { left: 10%; --drift: 50px; animation-duration: 4s; }
+        .snowflake:nth-of-type(2) { left: 40%; --drift: -70px; animation-duration: 6s; }
+        .snowflake:nth-of-type(3) { left: 80%; --drift: 40px; animation-duration: 5s; }
     </style>
 </head>
 <body>
@@ -156,63 +172,58 @@
     <div class="snowflake">❅</div><div class="snowflake">❄</div>
 
     <div class="header-section">
-        <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo" alt="Logo">
+        <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo" alt="LOGO">
         
         <h1 class="main-title">
-            <span class="blue-text">Frosty</span> <span class="white-text">Scripts</span>
+            <span class="blue-text">FROSTY</span> <span class="white-text">SCRIPTS</span>
         </h1>
         
         <p class="sub-title">
-            <span class="white-text">experience the </span>
-            <span class="blue-text">next level</span>
-            <span class="white-text"> of scripting</span>
+            <span class="white-text">EXPERIENCE THE </span><br>
+            <span class="blue-text">NEXT LEVEL</span><br>
+            <span class="white-text"> OF SCRIPTING</span>
         </p>
         
         <p class="small-info">
-            verified, safe-to-use and compatable on all devices
+            VERIFIED, SAFE-TO-USE AND COMPATABLE ON ALL DEVICES
         </p>
-        
-        <div class="category-bar">
-            <span class="blue-text">|</span> Executors download link 
-            <span class="blue-text">|</span> Best Scripts
-        </div>
     </div>
 
     <div class="container">
         
-        <div class="guide-text">Every best executors here👇</div>
-        
+        <div class="category-label blue-text">| EXECUTORS DOWNLOAD LINK</div>
+
         <a href="https://wearedevs.net/exploits" class="master-box">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img" alt="Master">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img" alt="MASTER">
             <div>
-                <span class="box-title">All-In-One executor website📁</span>
-                <span class="box-subtext">best executors</span>
+                <span class="box-title">ALL-IN-ONE EXECUTOR WEBSITE📁</span>
+                <span class="box-subtext">EVERY BEST EXECUTORS HERE👇</span>
             </div>
         </a>
-
-        <div class="guide-text guide-blue">works on all devices</div>
 
         <a href="https://www.mediafire.com/file/3oc1hkcs4kdiqu4/Delta-Executor-v2.713.apk/file" class="executor-box">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/images.jpeg" class="box-img" alt="Delta">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/images.jpeg" class="box-img" alt="DELTA">
             <div>
-                <span class="box-title">delta executor🚀</span>
-                <span class="box-subtext">best performance</span>
+                <span class="box-title">DELTA EXECUTOR🚀</span>
+                <span class="box-subtext">WORKS ON ALL DEVICES</span>
             </div>
         </a>
 
+        <div class="category-label blue-text">| BEST SCRIPTS</div>
+
         <div class="card">
-            <div class="status-badge">WORKING</div>
+            <div class="status-badge"><div class="green-dot"></div> WORKING</div>
             <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img">
-            <h2>Steal a Brainrot</h2>
-            <p>best script for brainrot enthusiastics</p>
+            <h2>STEAL A BRAINROT</h2>
+            <p>BEST SCRIPT FOR BRAINROT ENTHUSIASTICS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
 
         <div class="card">
-            <div class="status-badge">WORKING</div>
+            <div class="status-badge"><div class="green-dot"></div> WORKING</div>
             <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img">
-            <h2>[✨Moon] Sailor Piece</h2>
-            <p>best script for sailor piece warriors</p>
+            <h2>[✨MOON] SAILOR PIECE</h2>
+            <p>BEST SCRIPT FOR SAILOR PIECE WARRIORS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
 
@@ -220,3 +231,4 @@
 
 </body>
 </html>
+
