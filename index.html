@@ -174,22 +174,41 @@
         h2 { margin: 8px 0; font-size: 1.3rem; color: #0072ff; font-weight: 900; }
         p { color: #444; font-weight: 700; margin: 5px 0; font-size: 0.85rem; }
 
-        /* --- FAST SNOW ANIMATION --- */
-        .snowflake { color: #ffffff; font-size: 1.2em; position: fixed; top: -10%; z-index: 1; pointer-events: none; animation: fall linear infinite; }
-        @keyframes fall { 0% { top: -10%; transform: translateX(0); } 100% { top: 110%; transform: translateX(var(--drift)); } }
+        /* --- HIGH SPAWN RATE SNOW --- */
+        .snowflake { 
+            color: #ffffff; 
+            font-size: 1.5em; 
+            position: fixed; 
+            top: -10%; 
+            z-index: 1; 
+            pointer-events: none; 
+            animation: fall linear infinite; 
+        }
+
+        @keyframes fall { 
+            0% { top: -10%; transform: translateX(0); } 
+            100% { top: 110%; transform: translateX(var(--drift)); } 
+        }
         
-        /* FAST DURATIONS */
-        .snowflake:nth-of-type(1) { left: 10%; --drift: 60px; animation-duration: 2s; }
-        .snowflake:nth-of-type(2) { left: 30%; --drift: -40px; animation-duration: 2.5s; }
-        .snowflake:nth-of-type(3) { left: 50%; --drift: 50px; animation-duration: 1.8s; }
-        .snowflake:nth-of-type(4) { left: 70%; --drift: -60px; animation-duration: 2.2s; }
-        .snowflake:nth-of-type(5) { left: 90%; --drift: 30px; animation-duration: 1.9s; }
+        /* SNOWFLAKE POSITIONS AND DELAYS */
+        .snowflake:nth-of-type(1) { left: 5%; --drift: 50px; animation-duration: 4s; animation-delay: 0s; }
+        .snowflake:nth-of-type(2) { left: 15%; --drift: -30px; animation-duration: 5s; animation-delay: 1.5s; }
+        .snowflake:nth-of-type(3) { left: 25%; --drift: 40px; animation-duration: 4.5s; animation-delay: 3s; }
+        .snowflake:nth-of-type(4) { left: 35%; --drift: -50px; animation-duration: 6s; animation-delay: 0.5s; }
+        .snowflake:nth-of-type(5) { left: 45%; --drift: 20px; animation-duration: 5.5s; animation-delay: 2s; }
+        .snowflake:nth-of-type(6) { left: 55%; --drift: -40px; animation-duration: 4.2s; animation-delay: 4s; }
+        .snowflake:nth-of-type(7) { left: 65%; --drift: 60px; animation-duration: 5s; animation-delay: 1s; }
+        .snowflake:nth-of-type(8) { left: 75%; --drift: -20px; animation-duration: 4.8s; animation-delay: 2.5s; }
+        .snowflake:nth-of-type(9) { left: 85%; --drift: 35px; animation-duration: 5.2s; animation-delay: 0.2s; }
+        .snowflake:nth-of-type(10) { left: 95%; --drift: -55px; animation-duration: 4.5s; animation-delay: 3.5s; }
     </style>
 </head>
 <body>
 
     <div class="snowflake">❅</div><div class="snowflake">❄</div><div class="snowflake">❆</div>
-    <div class="snowflake">❄</div><div class="snowflake">❅</div>
+    <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
+    <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
 
     <div class="header-section">
         <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo" alt="LOGO">
