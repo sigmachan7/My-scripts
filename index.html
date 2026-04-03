@@ -27,6 +27,13 @@
             z-index: 10;
         }
 
+        /* --- HEARTBEAT ANIMATION --- */
+        @keyframes slowHeartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
         .container {
             display: flex;
             flex-direction: column;
@@ -49,13 +56,8 @@
             text-decoration: none;
             color: inherit;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: 0.3s;
             margin-bottom: 10px;
-        }
-
-        .executor-box:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 114, 255, 0.3);
+            animation: slowHeartbeat 3s ease-in-out infinite;
         }
 
         .executor-img {
@@ -81,9 +83,12 @@
             width: 90%;
             max-width: 350px;
             text-align: center;
-            position: relative; /* Needed for the Working dot */
+            position: relative;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            animation: slowHeartbeat 3s ease-in-out infinite;
         }
+
+        .card:nth-child(3) { animation-delay: 0.5s; }
 
         .card-img {
             width: 100%;
@@ -91,25 +96,25 @@
             margin-bottom: 10px;
         }
 
-        /* --- WORKING DOT --- */
+        /* --- WORKING STATUS --- */
         .status-badge {
             position: absolute;
             top: 10px;
             right: 10px;
             background: rgba(255, 255, 255, 0.9);
-            padding: 5px 10px;
+            padding: 4px 10px;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: bold;
             color: #28a745;
             border: 1px solid #28a745;
         }
 
         .dot {
-            height: 8px;
-            width: 8px;
+            height: 7px;
+            width: 7px;
             background-color: #28a745;
             border-radius: 50%;
             display: inline-block;
@@ -131,24 +136,44 @@
             margin-top: 10px;
         }
 
-        /* --- SNOW --- */
+        /* --- TRULY RANDOM SNOW --- */
         .snowflake {
-            color: #ffffff; font-size: 1.5em; position: fixed; top: -10%; z-index: 1; pointer-events: none;
+            color: #ffffff;
+            font-size: 1.2em;
+            position: fixed;
+            top: -10%;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
             animation: fall linear infinite;
         }
+
         @keyframes fall {
             0% { top: -10%; transform: translateX(0); }
-            100% { top: 110%; transform: translateX(100px); }
+            100% { top: 110%; transform: translateX(var(--drift)); }
         }
-        .snowflake:nth-of-type(1) { left: 5%; animation-duration: 3s; }
-        .snowflake:nth-of-type(2) { left: 25%; animation-duration: 4s; }
-        .snowflake:nth-of-type(3) { left: 45%; animation-duration: 3.5s; }
-        .snowflake:nth-of-type(4) { left: 65%; animation-duration: 5s; }
-        .snowflake:nth-of-type(5) { left: 85%; animation-duration: 3.2s; }
+
+        /* Diverse snowflake speeds and positions */
+        .snowflake:nth-of-type(1) { left: 2%;  --drift: 50px;  animation-duration: 4s; animation-delay: 0s; }
+        .snowflake:nth-of-type(2) { left: 12%; --drift: -40px; animation-duration: 6s; animation-delay: 2s; }
+        .snowflake:nth-of-type(3) { left: 22%; --drift: 80px;  animation-duration: 5s; animation-delay: 1s; }
+        .snowflake:nth-of-type(4) { left: 32%; --drift: -20px; animation-duration: 7s; animation-delay: 3s; }
+        .snowflake:nth-of-type(5) { left: 42%; --drift: 60px;  animation-duration: 4.5s; animation-delay: 0.5s; }
+        .snowflake:nth-of-type(6) { left: 52%; --drift: -80px; animation-duration: 6.5s; animation-delay: 4s; }
+        .snowflake:nth-of-type(7) { left: 62%; --drift: 30px;  animation-duration: 5.5s; animation-delay: 1.5s; }
+        .snowflake:nth-of-type(8) { left: 72%; --drift: 90px;  animation-duration: 4s; animation-delay: 2.5s; }
+        .snowflake:nth-of-type(9) { left: 82%; --drift: -50px; animation-duration: 6s; animation-delay: 0.2s; }
+        .snowflake:nth-of-type(10){ left: 92%; --drift: 40px;  animation-duration: 5s; animation-delay: 3.5s; }
+        /* Extra flakes for the left side coverage */
+        .snowflake:nth-of-type(11){ left: 7%;  --drift: 100px; animation-duration: 4.2s; animation-delay: 2.2s; }
+        .snowflake:nth-of-type(12){ left: 18%; --drift: -60px; animation-duration: 5.8s; animation-delay: 0.8s; }
     </style>
 </head>
 <body>
 
+    <div class="snowflake">❅</div><div class="snowflake">❆</div><div class="snowflake">❄</div>
+    <div class="snowflake">❅</div><div class="snowflake">❆</div><div class="snowflake">❄</div>
+    <div class="snowflake">❅</div><div class="snowflake">❆</div><div class="snowflake">❄</div>
     <div class="snowflake">❅</div><div class="snowflake">❆</div><div class="snowflake">❄</div>
 
     <h1>Frosty Scripts</h1>
