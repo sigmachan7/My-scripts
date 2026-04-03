@@ -24,7 +24,7 @@
         .header-section {
             width: 95%;
             max-width: 440px;
-            text-align: left; /* ALIGNED TO THE LEFT */
+            text-align: left;
             margin-bottom: 20px;
             z-index: 10;
         }
@@ -40,7 +40,7 @@
         }
 
         .main-title {
-            font-size: 2.2rem; /* ONE LINE */
+            font-size: 2.2rem;
             font-weight: 900;
             margin: 0;
             white-space: nowrap;
@@ -49,19 +49,21 @@
         .blue-text { color: #0072ff; }
         .white-text { color: #ffffff; }
 
+        /* SLOGAN IN THREE LINES */
         .sub-title {
-            font-size: 1.1rem; /* LOWERED FONT SIZE */
-            margin: 8px 0;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 1.2rem;
+            margin: 10px 0;
+            font-weight: 800;
+            line-height: 1.3;
         }
 
         .small-info {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.5px;
             margin-bottom: 10px;
             font-weight: bold;
             opacity: 0.9;
+            white-space: nowrap; /* FORCES ONE LINE */
         }
 
         /* --- BIG CATEGORY BAR --- */
@@ -73,20 +75,28 @@
             margin-top: 25px;
             margin-bottom: 10px;
             font-weight: 900;
-            font-size: 1.4rem; /* SIZE MATCHES THE BIG | */
+            font-size: 1.3rem;
+            white-space: nowrap; /* FORCES ONE LINE */
         }
 
         .big-pipe {
-            font-size: 2rem; /* VERY BIG | */
-            margin-right: 10px;
+            font-size: 2.5rem;
+            margin-right: 12px;
             color: #0072ff;
         }
 
-        /* --- HEARTBEAT ANIMATION --- */
+        /* --- ANIMATIONS --- */
         @keyframes slowHeartbeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.02); }
             100% { transform: scale(1); }
+        }
+
+        /* NEW PULSING DOT ANIMATION */
+        @keyframes dotGlow {
+            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0px #28a745; }
+            50% { transform: scale(1.4); opacity: 0.7; box-shadow: 0 0 10px #28a745; }
+            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0px #28a745; }
         }
 
         .container {
@@ -98,7 +108,6 @@
             z-index: 10;
         }
 
-        /* --- BOX STYLES --- */
         .box {
             display: flex;
             align-items: center;
@@ -109,12 +118,10 @@
             color: #1a1e26;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             animation: slowHeartbeat 3s ease-in-out infinite;
-            border: 2px solid #0072ff; /* ALL OUTLINES ARE NOW BLUE */
+            border: 2px solid #0072ff;
             width: 90%;
             max-width: 400px;
         }
-
-        .master-box { width: 95%; max-width: 430px; }
 
         .box-img { width: 65px; height: 65px; border-radius: 10px; object-fit: cover; margin-right: 15px; }
         .box-title { font-weight: 900; font-size: 1.1rem; display: block; }
@@ -130,14 +137,12 @@
             max-width: 350px;
             text-align: center;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             animation: slowHeartbeat 3s ease-in-out infinite;
             color: #1a1e26;
             margin-bottom: 15px;
         }
 
         .card-img { width: 100%; border-radius: 12px; margin-bottom: 10px; }
-        
         .btn-red {
             display: inline-block;
             background: #ff0000;
@@ -146,7 +151,6 @@
             text-decoration: none;
             font-weight: 900;
             border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
             font-size: 1rem;
         }
 
@@ -163,8 +167,8 @@
             height: 7px; width: 7px;
             background-color: #28a745;
             border-radius: 50%;
-            margin-right: 5px;
-            box-shadow: 0 0 4px #28a745;
+            margin-right: 6px;
+            animation: dotGlow 1.5s infinite ease-in-out; /* DIFFERENT PULSE */
         }
 
         h2 { margin: 8px 0; font-size: 1.3rem; color: #0072ff; font-weight: 900; }
@@ -175,7 +179,6 @@
         @keyframes fall { 0% { top: -10%; transform: translateX(0); } 100% { top: 110%; transform: translateX(var(--drift)); } }
         .snowflake:nth-of-type(1) { left: 10%; --drift: 40px; animation-duration: 5s; }
         .snowflake:nth-of-type(2) { left: 50%; --drift: -50px; animation-duration: 7s; }
-        .snowflake:nth-of-type(3) { left: 90%; --drift: 30px; animation-duration: 6s; }
     </style>
 </head>
 <body>
@@ -189,14 +192,14 @@
             <span class="blue-text">FROSTY</span> <span class="white-text">SCRIPTS</span>
         </h1>
         
-        <p class="sub-title">
-            <span class="white-text">EXPERIENCE THE </span>
-            <span class="blue-text">NEXT LEVEL</span>
-            <span class="white-text"> OF SCRIPTING</span>
-        </p>
+        <div class="sub-title">
+            <span class="white-text">EXPERIENCE THE</span><br>
+            <span class="blue-text">NEXT LEVEL OF</span><br>
+            <span class="white-text">SCRIPTING</span>
+        </div>
         
         <p class="small-info">
-            VERIFIED, SAFE-TO-USE AND COMPATABLE ON ALL DEVICES
+            VERIFIED, SAFE-TO-USE AND COMPATABLE WITH ALL DEVICES
         </p>
     </div>
 
@@ -204,10 +207,10 @@
         
         <div class="category-bar">
             <span class="big-pipe">|</span> 
-            <span class="white-text">EXECUTORS DOWNLOAD LINK</span>
+            <span class="white-text">EXECUTORS DOWNLOAD LINKS</span>
         </div>
 
-        <a href="https://wearedevs.net/exploits" class="box master-box">
+        <a href="https://wearedevs.net/exploits" class="box">
             <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img" alt="MASTER">
             <div>
                 <span class="box-title">ALL-IN-ONE EXECUTOR WEBSITE📁</span>
