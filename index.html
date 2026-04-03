@@ -23,7 +23,7 @@
         /* --- HEADER SECTION --- */
         .header-section {
             width: 95%;
-            max-width: 440px;
+            max-width: 500px;
             text-align: left;
             margin-bottom: 20px;
             z-index: 10;
@@ -49,21 +49,24 @@
         .blue-text { color: #0072ff; }
         .white-text { color: #ffffff; }
 
-        /* SLOGAN IN THREE LINES */
+        /* CENTERED & VERY BIG SLOGAN */
         .sub-title {
-            font-size: 1.2rem;
-            margin: 10px 0;
-            font-weight: 800;
-            line-height: 1.3;
+            font-size: 2.2rem; /* MADE VERY BIG */
+            margin: 25px 0;
+            font-weight: 900;
+            line-height: 1.1;
+            text-align: center; /* APPEAR IN MIDDLE */
+            width: 100%;
         }
 
         .small-info {
             font-size: 0.65rem;
             letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: bold;
             opacity: 0.9;
-            white-space: nowrap; /* FORCES ONE LINE */
+            white-space: nowrap;
+            text-align: left;
         }
 
         /* --- BIG CATEGORY BAR --- */
@@ -72,11 +75,11 @@
             align-items: center;
             width: 95%;
             max-width: 440px;
-            margin-top: 25px;
+            margin-top: 20px;
             margin-bottom: 10px;
             font-weight: 900;
             font-size: 1.3rem;
-            white-space: nowrap; /* FORCES ONE LINE */
+            white-space: nowrap;
         }
 
         .big-pipe {
@@ -92,7 +95,6 @@
             100% { transform: scale(1); }
         }
 
-        /* NEW PULSING DOT ANIMATION */
         @keyframes dotGlow {
             0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0px #28a745; }
             50% { transform: scale(1.4); opacity: 0.7; box-shadow: 0 0 10px #28a745; }
@@ -154,7 +156,6 @@
             font-size: 1rem;
         }
 
-        /* --- STATUS BADGE --- */
         .status-badge {
             position: absolute; top: 12px; right: 12px;
             background: WHITE; padding: 4px 10px; border-radius: 20px;
@@ -168,7 +169,7 @@
             background-color: #28a745;
             border-radius: 50%;
             margin-right: 6px;
-            animation: dotGlow 1.5s infinite ease-in-out; /* DIFFERENT PULSE */
+            animation: dotGlow 1.5s infinite ease-in-out;
         }
 
         h2 { margin: 8px 0; font-size: 1.3rem; color: #0072ff; font-weight: 900; }
@@ -194,7 +195,7 @@
         
         <div class="sub-title">
             <span class="white-text">EXPERIENCE THE</span><br>
-            <span class="blue-text">NEXT LEVEL OF</span><br>
+            <span class="blue-text">NEXT LEVEL</span> <span class="white-text">OF</span><br>
             <span class="white-text">SCRIPTING</span>
         </div>
         
