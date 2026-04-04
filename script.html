@@ -3,154 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frosty Scripts | Frosty Scripts</title>
+    <title>FROSTY SCRIPTS | HOME</title>
+    <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg">
+    
     <style>
-        /* Base Setup */
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --bg-gradient: linear-gradient(125deg, #add8e6, #87ceeb, #0072ff);
+            --text-main: #ffffff;
+            --box-bg: rgba(255, 255, 255, 0.7);
+            --box-text: #1a1e26;
+            --accent: #0072ff;
+            --frosty-blue: #00d4ff;
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --working-green: #28a745;
+            --hacker-green: #00ff41;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(125deg, #0b0e14, #1a1e26, #000000);
+            --box-bg: rgba(26, 30, 38, 0.8);
+            --box-text: #ffffff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            margin: 0;
-            padding: 20px;
-            background-color: #add8e6; /* Light Blue Background */
-            color: #1a1e26;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            margin: 0; padding: 0 0 100px 0;
+            color: var(--text-main); font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; text-transform: uppercase; overflow-x: hidden;
+            transition: background 0.5s ease;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            color: #005f73;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            z-index: 10;
+        .bg-animate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background: var(--bg-gradient);
+            background-size: 400% 400%; animation: aurora 15s ease infinite;
         }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            width: 100%;
-            max-width: 450px;
-            z-index: 10;
-        }
+        @keyframes aurora { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
 
-        /* Script Section Box */
-        .script-card {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-            border: 2px solid #0072ff;
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+        /* SNOW SYSTEM */
+        #snow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .snowflake { position: absolute; top: -10%; color: white; user-select: none; animation: fall linear infinite, sideSway ease-in-out infinite; }
+        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+        @keyframes sideSway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(30px); } }
 
-        .script-img {
-            width: 100%;
-            max-width: 200px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
+        .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: var(--box-bg); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); }
 
-        h2 {
-            font-size: 1.2rem;
-            color: #0072ff;
-            margin: 5px 0;
-        }
+        .main-title { font-size: 2.3rem; font-weight: 900; margin: 5px 0; font-family: monospace; }
+        .frosty-text { color: var(--frosty-blue); }
+        .scripts-text { color: #ffffff; }
+        .blue-pipe { color: var(--accent); font-weight: 900; font-size: 1.5rem; margin-right: 5px; }
 
-        /* The Code Box */
-        .code-box {
-            background: #1a1e26; /* Dark box for code contrast */
-            color: #00ffcc;
-            padding: 10px;
-            border-radius: 8px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            word-break: break-all;
-            margin: 10px 0;
-            text-align: left;
-        }
+        .top-controls { position: fixed; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100; }
+        .control-btn { background: var(--box-bg); border: 2px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
 
-        /* Copy Button */
-        .copy-btn {
-            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
-        }
+        .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 85px; }
+        
+        .status-container { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; font-weight: 900; font-size: 0.7rem; color: var(--working-green); }
+        .dot { height: 8px; width: 8px; background-color: var(--working-green); border-radius: 50%; animation: pulse-dot 1.5s infinite; }
+        @keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
 
-        .copy-btn:active {
-            transform: scale(0.95);
-        }
+        .content-wrapper { display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center; }
+        .box { display: flex; align-items: center; border-radius: 15px; padding: 15px; text-decoration: none; color: var(--box-text); width: 85%; max-width: 380px; transition: 0.3s; }
+        .box:hover { transform: scale(1.03); }
+        .box-img { width: 60px; height: 60px; border-radius: 10px; margin-right: 15px; object-fit: cover; }
 
-        /* --- FAST RANDOM SNOW --- */
-        .snowflake {
-            color: #fff;
-            font-size: 1.5em;
-            position: fixed;
-            top: -10%;
-            z-index: 1;
-            user-select: none;
-            pointer-events: none;
-            animation-name: fall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        @keyframes fall {
-            0% { top: -10%; transform: translateX(0); }
-            100% { top: 110%; transform: translateX(80px); }
-        }
-
-        .snowflake:nth-of-type(1) { left: 10%; animation-duration: 3s; }
-        .snowflake:nth-of-type(2) { left: 30%; animation-duration: 4s; }
-        .snowflake:nth-of-type(3) { left: 50%; animation-duration: 3.5s; }
-        .snowflake:nth-of-type(4) { left: 70%; animation-duration: 4.5s; }
-        .snowflake:nth-of-type(5) { left: 90%; animation-duration: 3.2s; }
+        .card { border-radius: 20px; padding: 20px; width: 85%; max-width: 350px; text-align: center; color: var(--box-text); margin-bottom: 20px; transition: 0.3s; }
+        .card:hover { transform: scale(1.03); }
+        .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; height: 180px; object-fit: cover; }
+        
+        .btn-red { display: inline-block; background: #ff0000; color: white; padding: 12px 35px; text-decoration: none; font-weight: 900; border-radius: 50px; margin-top: 10px; cursor: pointer; border:none; width: 100%; }
+        .btn-copy { display: inline-block; background: #0072ff; color: white; padding: 12px 35px; border: none; font-weight: 900; border-radius: 50px; margin-top: 10px; cursor: pointer; width: 100%; }
+        
+        .vouch-box { width: 85%; max-width: 380px; padding: 15px; border-radius: 15px; margin-top: 10px; font-size: 0.7rem; color: var(--box-text); }
+        .vouch-item { border-bottom: 1px solid rgba(0,114,255,0.2); padding: 8px 0; display: flex; justify-content: space-between; }
+        
+        .hidden { display: none !important; }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
-    <div class="snowflake">❅</div>
-    <div class="snowflake">❆</div>
-    <div class="snowflake">❄</div>
-    <div class="snowflake">❅</div>
-    <div class="snowflake">❆</div>
+    <div class="bg-animate"></div>
+    <div id="snow-container"></div>
 
-    <h1>Frosty Scripts</h1>
+    <div class="top-controls">
+        <button id="theme-toggle" class="control-btn glass">☀️</button>
+        <button id="snow-toggle" class="control-btn glass">❄️</button>
+    </div>
 
-    <div class="container">
-        
-        <div class="script-card">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="script-img" alt="Steal a Brainrot">
-            <h2>Steal a Brainrot</h2>
-            <div class="code-box" id="code1">loadstring(game:HttpGet("https://cdn.sourceb.in/bins/7grTOcqFnx/0"))()</div>
-            <button class="copy-btn" onclick="copyText('code1')">COPY SCRIPT</button>
+    <div class="header-section" id="parallax-header">
+        <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" style="width: 85px; height: 85px; border-radius: 20px; border: 3px solid var(--accent); object-fit: cover;">
+        <h1 class="main-title" id="scramble-title">
+            <span class="frosty-text">FROSTY</span> <span class="scripts-text">SCRIPTS</span>
+        </h1>
+        <div style="font-size: 1.8rem; margin: 15px 0; font-weight: 900; text-align: center;">THE ONLY <span style="color:var(--accent);">WORKING</span> HUB</div>
+    </div>
+
+    <div class="content-wrapper">
+        <div style="width: 90%; max-width: 400px; margin-bottom: 10px; font-weight: 900;"><span class="blue-pipe">|</span> EXECUTORS</div>
+
+        <a href="https://delta-executor.com" class="box glass">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/images.jpeg" class="box-img">
+            <div>
+                <span style="font-weight: 900; font-size: 1rem;">DELTA EXECUTOR</span>
+                <span style="font-size: 0.6rem; opacity: 0.7; font-weight: bold;">STABLE & VERIFIED ✓</span>
+            </div>
+        </a>
+
+        <a href="https://wearedevs.net/exploits" class="box glass">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img">
+            <div>
+                <span style="font-weight: 900; font-size: 1rem;">ALL-IN-ONE WEBSITE📁</span>
+                <span style="font-size: 0.6rem; opacity: 0.7; font-weight: bold;">LATEST DOWNLOADS👆</span>
+            </div>
+        </a>
+
+        <div style="width: 90%; max-width: 400px; margin-top: 30px; margin-bottom: 10px; font-weight: 900;"><span class="blue-pipe">|</span> SCRIPTS</div>
+
+        <div class="card glass">
+            <div class="status-container"><span class="dot"></span> WORKING</div>
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img">
+            <h2 style="color:var(--accent);">[🌙MOON UPDATE⚔️] SAILOR PIECE</h2>
+            <div id="sailor-container">
+                <button onclick="unlockScript('sailor', 'https://youtube.com/@YourChannel')" class="btn-red">SUB TO UNLOCK🔓</button>
+            </div>
         </div>
 
-        <div class="script-card">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="script-img" alt="Sailor Piece">
-            <h2>[🌙Moon Update⚔️] Sailor Piece</h2>
-            <div class="code-box" id="code2">loadstring(game:HttpGet("https://cdn.sourceb.in/bins/piRiVaGqEd/0"))()</div>
-            <button class="copy-btn" onclick="copyText('code2')">COPY SCRIPT</button>
+        <div class="card glass">
+            <div class="status-container"><span class="dot"></span> WORKING</div>
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img">
+            <h2 style="color:var(--accent);">STEAL A BRAINROT</h2>
+            <div id="brainrot-container">
+                <button onclick="unlockScript('brainrot', 'https://youtube.com/@YourChannel')" class="btn-red">SUB TO UNLOCK🔓</button>
+            </div>
         </div>
 
+        <div style="width: 90%; max-width: 400px; margin-top: 30px; font-weight: 900;"><span class="blue-pipe">|</span> COMMUNITY PROOF</div>
+        <div class="vouch-box glass">
+            <div class="vouch-item"><span>User_782:</span> <span style="color:var(--working-green);">UNLOCKED ✅</span></div>
+            <div class="vouch-item"><span>Skibi_X:</span> <span style="color:var(--working-green);">LOADED SAILOR PIECE ⚔️</span></div>
+            <div class="vouch-item"><span>FrostFan:</span> <span style="color:var(--working-green);">BEST HUB FR 🔥</span></div>
+        </div>
     </div>
 
     <script>
-        function copyText(elementId) {
-            const text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Copied to clipboard!");
+        // 1. SMART UNLOCK SYSTEM
+        const SCRIPT_DATA = {
+            'sailor': 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/piRiVaGqEd/0"))()',
+            'brainrot': 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/7grTOcqFnx/0"))()'
+        };
+
+        function unlockScript(id, ytLink) {
+            window.open(ytLink, '_blank');
+            const container = document.getElementById(id + '-container');
+            container.innerHTML = `<button class="btn-red" style="background:#555; cursor:wait;">VERIFYING... (15s) ⏳</button>`;
+
+            setTimeout(() => {
+                localStorage.setItem(id + '_unlocked', 'true');
+                localStorage.setItem(id + '_time', Date.now());
+                renderButtons();
+            }, 15000);
+        }
+
+        function renderButtons() {
+            Object.keys(SCRIPT_DATA).forEach(id => {
+                const isUnlocked = localStorage.getItem(id + '_unlocked');
+                const savedTime = localStorage.getItem(id + '_time');
+                const container = document.getElementById(id + '-container');
+
+                if (isUnlocked && (Date.now() - savedTime < 14400000)) { // 4 Hours = 14,400,000ms
+                    container.innerHTML = `<button onclick="copyScript('${id}')" class="btn-copy">COPY SCRIPT 📋</button>`;
+                }
             });
         }
-    </script>
 
+        function copyScript(id) {
+            navigator.clipboard.writeText(SCRIPT_DATA[id]);
+            alert("SCRIPT COPIED! PASTE IN EXECUTOR ❄️");
+        }
+
+        // 2. SNOW SYSTEM
+        const snowContainer = document.getElementById('snow-container');
+        for (let i = 0; i < 50; i++) {
+            let flake = document.createElement('div');
+            flake.className = 'snowflake';
+            flake.innerHTML = '❄';
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.opacity = Math.random();
+            flake.style.animationDuration = (Math.random() * 2 + 2) + 's, ' + (Math.random() * 2 + 1) + 's';
+            flake.style.animationDelay = Math.random() * 5 + 's';
+            snowContainer.appendChild(flake);
+        }
+
+        // 3. HACKER SCRAMBLE
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const titleElement = document.getElementById("scramble-title");
+        const originalText = "FROSTY SCRIPTS";
+
+        function scramble() {
+            let iteration = 0;
+            const interval = setInterval(() => {
+                titleElement.innerHTML = originalText.split("").map((letter, index) => {
+                    if (index < iteration) {
+                        return index < 6 ? `<span class="frosty-text">${originalText[index]}</span>` : `<span class="scripts-text">${originalText[index]}</span>`;
+                    }
+                    return `<span style="color:#00ff41">${letters[Math.floor(Math.random() * 26)]}</span>`;
+                }).join("");
+                if (iteration >= originalText.length) clearInterval(interval);
+                iteration += 1/3;
+            }, 30);
+        }
+
+        // INITIALIZE
+        window.onload = () => {
+            scramble();
+            renderButtons();
+        };
+
+        // CONTROLS
+        document.getElementById('snow-toggle').onclick = () => snowContainer.classList.toggle('hidden');
+        document.getElementById('theme-toggle').onclick = function() {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            this.innerText = isDark ? '☀️' : '🌙';
+        };
+    </script>
 </body>
 </html>
