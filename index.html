@@ -10,10 +10,11 @@
         :root {
             --bg-color: #add8e6; 
             --text-main: #ffffff;
-            --box-bg: rgba(255, 255, 255, 0.7); /* 1. GLASSMORPHISM BASE */
+            --box-bg: rgba(255, 255, 255, 0.7);
             --box-text: #1a1e26;
             --accent: #0072ff;
             --glass-border: rgba(255, 255, 255, 0.3);
+            --working-green: #28a745;
         }
 
         [data-theme="dark"] {
@@ -23,72 +24,60 @@
             --text-main: #ffffff;
         }
 
-        /* 2. CUSTOM SCROLLBAR */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
-        /* 3. LOADING SCREEN */
         #loader {
-            position: fixed;
-            width: 100%; height: 100%;
-            background: #0b0e14;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: 9999;
+            position: fixed; width: 100%; height: 100%;
+            background: #0b0e14; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
             transition: opacity 0.8s ease;
         }
-        .load-text { font-size: 2rem; font-weight: 900; color: var(--accent); animation: pulse 1.5s infinite; }
 
-        body {
-            margin: 0; padding: 0 0 100px 0;
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            font-family: 'Segoe UI', sans-serif;
-            display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; text-transform: uppercase;
-            overflow-x: hidden;
-        }
-
-        /* 4. ANIMATED BACKGROUND (AURORA/MATRIX) */
         .bg-animate {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: linear-gradient(125deg, #add8e6, #87ceeb, #0072ff);
-            background-size: 400% 400%;
-            animation: aurora 15s ease infinite;
+            z-index: -2; background: linear-gradient(125deg, #add8e6, #87ceeb, #0072ff);
+            background-size: 400% 400%; animation: aurora 15s ease infinite;
         }
+
         @keyframes aurora { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
 
-        /* 6. SKELETON PULSE */
-        .skeleton { animation: skeleton-loading 1s linear infinite alternate; }
-        @keyframes skeleton-loading { from { opacity: 0.5; } to { opacity: 1; } }
-
-        /* 1. GLASSMORPHISM CLASS */
         .glass {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background: var(--box-bg);
-            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            background: var(--box-bg); border: 1px solid var(--glass-border);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .top-controls {
-            position: fixed; top: 15px; right: 15px;
-            display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100;
+        /* WORKING DOT & PULSE */
+        .status-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin-bottom: 10px; font-weight: 900; font-size: 0.7rem;
+            color: var(--working-green);
         }
 
-        /* 11. AUTO-UPDATE & 10. DEVICE DETECTION BAR */
-        .system-info {
-            font-size: 0.6rem; font-weight: 900; color: #fff;
-            background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 5px;
+        .dot {
+            height: 8px; width: 8px; background-color: var(--working-green);
+            border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 0 rgba(40, 167, 69, 0.4);
+            animation: pulse-dot 1.5s infinite;
         }
 
-        #theme-toggle {
-            background: var(--box-bg); border: 2px solid var(--accent);
-            border-radius: 50%; width: 45px; height: 45px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+        @keyframes pulse-dot {
+            0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
         }
+
+        body {
+            margin: 0; padding: 0 0 100px 0; background-color: var(--bg-color); 
+            color: var(--text-main); font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; text-transform: uppercase; overflow-x: hidden;
+        }
+
+        .top-controls { position: fixed; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100; }
+        .system-info { font-size: 0.6rem; font-weight: 900; color: #fff; background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 5px; }
 
         .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 85px; }
         .yt-logo { width: 85px; height: 85px; border-radius: 20px; border: 3px solid var(--accent); object-fit: cover; }
@@ -104,19 +93,14 @@
 
         .box {
             display: flex; align-items: center; border-radius: 15px; padding: 15px;
-            text-decoration: none; color: var(--box-text); width: 85%; max-width: 380px;
-            transition: 0.3s;
+            text-decoration: none; color: var(--box-text); width: 85%; max-width: 380px; transition: 0.3s;
         }
-        .box:hover { transform: translateY(-5px) scale(1.02); border: 1px solid var(--accent); }
-
+        .box:hover { transform: translateY(-5px); border: 1px solid var(--accent); }
         .box-img { width: 60px; height: 60px; border-radius: 10px; margin-right: 15px; object-fit: cover; }
         .box-title { font-weight: 900; font-size: 1rem; display: block; }
         .box-subtext { font-size: 0.7rem; color: #555; display: block; font-weight: bold; }
 
-        .card {
-            border-radius: 20px; padding: 20px; width: 85%; max-width: 350px;
-            text-align: center; color: var(--box-text); margin-bottom: 20px;
-        }
+        .card { border-radius: 20px; padding: 20px; width: 85%; max-width: 350px; text-align: center; color: var(--box-text); margin-bottom: 20px; }
         .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; height: 180px; object-fit: cover; }
         
         .btn-red {
@@ -127,23 +111,21 @@
 
         .snowflake { color: #ffffff; position: fixed; z-index: -1; pointer-events: none; font-size: 1.5em; top: -10%; animation: fall 5s linear infinite; }
         @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body data-theme="light">
 
     <div id="loader">
-        <div class="load-text">FROSTY SCRIPTS</div>
-        <p style="color:white; font-size:0.7rem; font-weight:900;">INITIALIZING BYPASSERS...</p>
+        <div style="font-size: 2rem; font-weight: 900; color: var(--accent);">FROSTY SCRIPTS</div>
     </div>
 
     <div class="bg-animate"></div>
     <div class="snowflake">❅</div>
 
     <div class="top-controls">
-        <button id="theme-toggle" class="glass">☀️</button>
+        <button id="theme-toggle" class="glass" style="border-radius:50%; width:45px; height:45px; cursor:pointer;">☀️</button>
         <div class="system-info">OS: <span id="device">DETECTING...</span></div>
-        <div class="system-info" id="update-status">CHECKING UPDATES...</div>
+        <div class="system-info">STATUS: UP TO DATE ✅</div>
     </div>
 
     <div class="header-section">
@@ -175,14 +157,16 @@
         <div class="category-bar"><span class="big-pipe">|</span> LATEST SCRIPTS</div>
 
         <div class="card glass">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img skeleton">
+            <div class="status-container"><span class="dot"></span> WORKING</div>
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img">
             <h2 style="color:var(--accent);">[🌙MOON UPDATE⚔️] SAILOR PIECE</h2>
             <p style="font-weight:bold;">BEST SCRIPT FOR SAILOR PIECE WARRIORS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
 
         <div class="card glass">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img skeleton">
+            <div class="status-container"><span class="dot"></span> WORKING</div>
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img">
             <h2 style="color:var(--accent);">STEAL A BRAINROT</h2>
             <p style="font-weight:bold;">BEST SCRIPT FOR BRAINROT ENTHUSIASTS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
@@ -190,32 +174,20 @@
     </div>
 
     <script>
-        // 3. LOADER LOGIC
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').style.opacity = '0';
                 setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
-            }, 1500);
+            }, 1000);
         });
 
-        // 10. DEVICE DETECTION
-        const deviceDisp = document.getElementById('device');
         const ua = navigator.userAgent;
-        if(/Android/i.test(ua)) deviceDisp.innerText = "ANDROID";
-        else if(/iPhone|iPad/i.test(ua)) deviceDisp.innerText = "IOS";
-        else deviceDisp.innerText = "PC/WINDOWS";
-
-        // 11. AUTO UPDATE ANIMATION
-        setTimeout(() => {
-            document.getElementById('update-status').innerText = "STATUS: UP TO DATE ✅";
-        }, 3000);
+        document.getElementById('device').innerText = /Android/i.test(ua) ? "ANDROID" : /iPhone|iPad/i.test(ua) ? "IOS" : "PC/WINDOWS";
 
         const toggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-
         toggleBtn.addEventListener('click', () => {
-            const isDark = body.getAttribute('data-theme') === 'dark';
-            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
             toggleBtn.innerText = isDark ? '☀️' : '🌙';
         });
     </script>
