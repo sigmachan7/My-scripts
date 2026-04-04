@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FROSTY SCRIPTS | HOME</title>
     <style>
-        /* --- THEME VARIABLES --- */
         :root {
             --bg-color: #add8e6; 
             --text-main: #ffffff;
@@ -21,10 +20,9 @@
             --text-main: #ffffff;
         }
 
-        /* BASE SETUP */
         body {
             margin: 0;
-            padding: 0 0 80px 0;
+            padding: 0 0 100px 0;
             background-color: var(--bg-color); 
             color: var(--text-main); 
             font-family: 'Segoe UI', sans-serif;
@@ -36,7 +34,6 @@
             transition: background-color 0.5s ease;
         }
 
-        /* --- TOP CONTROLS --- */
         .top-controls {
             position: fixed;
             top: 15px;
@@ -70,18 +67,13 @@
             font-size: 0.65rem;
             font-weight: 900;
             color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
 
-        /* --- HEADER --- */
         .header-section {
             width: 90%;
             max-width: 500px;
             text-align: left;
-            margin-top: 60px;
-            margin-bottom: 20px;
+            margin-top: 70px;
         }
 
         .yt-logo {
@@ -104,41 +96,34 @@
             text-align: center;
         }
 
-        /* --- NEW VERIFIED INFO TEXT --- */
         .verified-info {
             font-size: 0.65rem;
-            letter-spacing: 0.5px;
             margin-bottom: 30px;
             font-weight: 900;
             text-align: center;
-            width: 100%;
             opacity: 0.95;
-            color: var(--text-main);
         }
 
-        /* --- CATEGORY BAR --- */
         .category-bar {
             display: flex;
             align-items: center;
             width: 90%;
             max-width: 400px;
-            margin: 25px 0 12px 0;
+            margin: 30px 0 15px 0;
             font-weight: 900;
             font-size: 1.3rem;
         }
 
         .big-pipe { font-size: 2.5rem; margin-right: 12px; color: var(--accent); }
 
-        /* --- CONTAINER --- */
         .content-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             width: 100%;
             align-items: center;
         }
 
-        /* --- BOX & CARD STYLES --- */
         .box {
             display: flex;
             align-items: center;
@@ -150,8 +135,11 @@
             border: 2px solid var(--accent);
             width: 85%;
             max-width: 380px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+
+        .box-img { width: 60px; height: 60px; border-radius: 10px; margin-right: 15px; object-fit: cover; }
+        .box-title { font-weight: 900; font-size: 1.1rem; display: block; }
+        .box-subtext { font-size: 0.75rem; color: #777; display: block; font-weight: bold; }
 
         .card {
             background: var(--box-bg);
@@ -162,11 +150,10 @@
             max-width: 350px;
             text-align: center;
             color: var(--box-text);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+        .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; height: 180px; object-fit: cover; }
         
         .btn-red {
             display: inline-block;
@@ -176,14 +163,9 @@
             text-decoration: none;
             font-weight: 900;
             border-radius: 50px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
-        .box-img { width: 60px; height: 60px; border-radius: 10px; margin-right: 15px; object-fit: cover; }
-        .box-title { font-weight: 900; font-size: 1.1rem; display: block; }
-        .box-subtext { font-size: 0.8rem; color: #777; display: block; }
-
-        /* --- EFFECTS --- */
         .snowflake, .star { color: #ffffff; position: fixed; z-index: -1; pointer-events: none; }
         .snowflake { font-size: 1.5em; top: -10%; animation: fall 5s linear infinite; }
         .star { font-size: 0.8em; opacity: 0; }
@@ -191,66 +173,59 @@
 
         @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
-        .snowflake:nth-of-type(1) { left: 15%; }
-        .snowflake:nth-of-type(2) { left: 75%; animation-delay: 2s; }
     </style>
 </head>
 <body data-theme="light">
 
     <div class="snowflake">❅</div><div class="snowflake">❄</div>
-    <div class="star" style="top:10%; left:10%;">⭐</div>
-    <div class="star" style="top:65%; left:85%;">⭐</div>
+    <div class="star" style="top:15%; left:10%;">⭐</div>
+    <div class="star" style="top:70%; left:80%;">⭐</div>
 
     <div class="top-controls">
         <button id="theme-toggle">☀️</button>
-        <div class="viewer-box">LIVE VIEWS: <span id="count">342</span></div>
+        <div class="viewer-box">LIVE VIEWS: <span id="count">482</span></div>
     </div>
 
     <div class="header-section">
-        <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo" alt="LOGO">
-        <h1 class="main-title"><span class="blue-text">FROSTY</span> <span class="white-text">SCRIPTS</span></h1>
-        
-        <div class="sub-title">
-            <span class="white-text">EXPERIENCE THE</span><br>
-            <span class="blue-text">NEXT LEVEL</span> <span class="white-text">OF</span><br>
-            <span class="white-text">SCRIPTING</span>
-        </div>
-        
-        <div class="verified-info">
-            VERIFIED, SAFE-TO-USE AND COMPATIBLE WITH ALL DEVICES
-        </div>
+        <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo">
+        <h1 class="main-title"><span class="blue-text">FROSTY</span> SCRIPTS</h1>
+        <div class="sub-title"><span class="white-text">EXPERIENCE THE</span> <span class="blue-text">NEXT LEVEL</span> <span class="white-text">OF SCRIPTING</span></div>
+        <div class="verified-info">VERIFIED, SAFE-TO-USE AND COMPATIBLE WITH ALL DEVICES</div>
     </div>
 
     <div class="content-wrapper">
         
-        <div class="category-bar">
-            <span class="big-pipe">|</span> <span class="white-text">EXECUTORS</span>
-        </div>
+        <div class="category-bar"><span class="big-pipe">|</span> EXECUTORS</div>
 
-        <a href="https://wearedevs.net/exploits" class="box">
+        <a href="https://delta-executor.com" class="box">
             <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img">
             <div>
-                <span class="box-title">ALL-IN-ONE EXECUTOR WEBSITE📁</span>
+                <span class="box-title">DELTA EXECUTOR V7</span>
+                <span class="box-subtext">THE BEST MOBILE EXECUTOR👆</span>
+            </div>
+        </a>
+
+        <a href="https://wearedevs.net/exploits" class="box">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="box-img">
+            <div>
+                <span class="box-title">ALL-IN-ONE WEBSITE📁</span>
                 <span class="box-subtext">EVERY BEST EXECUTORS HERE👆</span>
             </div>
         </a>
 
-        <div class="category-bar">
-            <span class="big-pipe">|</span> <span class="white-text">LATEST SCRIPTS</span>
-        </div>
+        <div class="category-bar"><span class="big-pipe">|</span> LATEST SCRIPTS</div>
 
         <div class="card">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img" alt="Brainrot">
-            <h2 style="color:var(--accent); font-weight:900;">STEAL A BRAINROT</h2>
-            <p style="font-weight:bold;">BEST SCRIPT FOR BRAINROT ENTHUSIASTS</p>
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/images.jpeg" class="card-img">
+            <h2 style="color:var(--accent);">SAILOR PIECE</h2>
+            <p style="font-weight:bold;">BEST SCRIPT FOR SAILOR PIECE WARRIORS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
 
         <div class="card">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/images.jpeg" class="card-img" alt="Sailor Piece">
-            <h2 style="color:var(--accent); font-weight:900;">SAILOR PIECE</h2>
-            <p style="font-weight:bold;">BEST SCRIPT FOR SAILOR PIECE WARRIORS</p>
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img">
+            <h2 style="color:var(--accent);">STEAL A BRAINROT</h2>
+            <p style="font-weight:bold;">BEST SCRIPT FOR BRAINROT ENTHUSIASTS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
 
@@ -261,24 +236,15 @@
         const body = document.body;
         const countEl = document.getElementById('count');
 
-        // Theme Toggle Logic
         toggleBtn.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.innerText = '🌙';
-            } else {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.innerText = '☀️';
-            }
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            toggleBtn.innerText = isDark ? '☀️' : '🌙';
         });
 
-        // Live Counter Animation
         setInterval(() => {
-            let current = parseInt(countEl.innerText);
-            if (Math.random() > 0.8) {
-                countEl.innerText = current + 1;
-            }
+            let val = parseInt(countEl.innerText);
+            if(Math.random() > 0.8) countEl.innerText = val + 1;
         }, 5000);
     </script>
 </body>
