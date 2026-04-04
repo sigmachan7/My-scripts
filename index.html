@@ -32,7 +32,9 @@
             margin: 0; padding: 0 0 100px 0;
             color: var(--text-main); font-family: 'Segoe UI', sans-serif;
             display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; text-transform: uppercase; overflow-x: hidden;
+            min-height: 100vh; 
+            text-transform: uppercase; /* AUTO CAPITALIZATION */
+            overflow-x: hidden;
             transition: background 0.5s ease;
         }
 
@@ -99,7 +101,7 @@
         <h1 class="main-title" id="scramble-title">
             <span class="frosty-text">FROSTY</span> <span class="scripts-text">SCRIPTS</span>
         </h1>
-        <div style="font-size: 1.8rem; margin: 15px 0; font-weight: 900; text-align: center;">THE ONLY <span style="color:var(--accent);">WORKING</span> HUB</div>
+        <div style="font-size: 2.1rem; margin: 20px 0; font-weight: 900; text-align: center;">EXPERIENCE THE <span style="color:var(--accent);">NEXT LEVEL</span> OF SCRIPTING</div>
     </div>
 
     <div class="content-wrapper">
@@ -108,20 +110,20 @@
         <a href="https://delta-executor.com" class="box glass">
             <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/images.jpeg" class="box-img">
             <div>
-                <span style="font-weight: 900; font-size: 1rem;">DELTA EXECUTOR</span>
-                <span style="font-size: 0.6rem; opacity: 0.7; font-weight: bold;">STABLE & VERIFIED ✓</span>
+                <span style="font-weight: 900; font-size: 1rem;">DELTA EXECUTOR <span style="background:var(--accent); color:white; font-size:0.5rem; padding:2px 5px; border-radius:4px; margin-left:5px;">VERIFIED ✓</span></span>
+                <span style="font-size: 0.7rem; opacity: 0.7; font-weight: bold;">THE BEST MOBILE EXECUTOR👆</span>
             </div>
         </a>
 
         <a href="https://wearedevs.net/exploits" class="box glass">
             <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img">
             <div>
-                <span style="font-weight: 900; font-size: 1rem;">ALL-IN-ONE WEBSITE📁</span>
-                <span style="font-size: 0.6rem; opacity: 0.7; font-weight: bold;">LATEST DOWNLOADS👆</span>
+                <span style="font-weight: 900; font-size: 1rem;">ALL-IN-ONE EXECUTOR WEBSITE📁</span>
+                <span style="font-size: 0.7rem; opacity: 0.7; font-weight: bold;">EVERY BEST EXECUTORS HERE👆</span>
             </div>
         </a>
 
-        <div style="width: 90%; max-width: 400px; margin-top: 30px; margin-bottom: 10px; font-weight: 900;"><span class="blue-pipe">|</span> SCRIPTS</div>
+        <div style="width: 90%; max-width: 400px; margin-top: 30px; margin-bottom: 10px; font-weight: 900;"><span class="blue-pipe">|</span> LATEST SCRIPTS</div>
 
         <div class="card glass">
             <div class="status-container"><span class="dot"></span> WORKING</div>
@@ -150,20 +152,16 @@
     </div>
 
     <script>
-        // 1. SMART UNLOCK SYSTEM (4 HOUR MEMORY)
         const SCRIPT_DATA = {
             'sailor': 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/piRiVaGqEd/0"))()',
             'brainrot': 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/7grTOcqFnx/0"))()'
         };
 
         function unlockScript(id, ytLink) {
-            // Directly opens your YouTube channel
             window.open(ytLink, '_blank');
-            
             const container = document.getElementById(id + '-container');
             container.innerHTML = `<button class="btn-red" style="background:#555; cursor:wait;">VERIFYING... (15s) ⏳</button>`;
 
-            // Artificial delay to encourage actual subscription
             setTimeout(() => {
                 localStorage.setItem(id + '_unlocked', 'true');
                 localStorage.setItem(id + '_time', Date.now());
@@ -172,19 +170,16 @@
         }
 
         function renderButtons() {
-            const FOUR_HOURS = 14400000; // 4 * 60 * 60 * 1000
-            
+            const FOUR_HOURS = 14400000;
             Object.keys(SCRIPT_DATA).forEach(id => {
                 const isUnlocked = localStorage.getItem(id + '_unlocked');
                 const savedTime = localStorage.getItem(id + '_time');
                 const container = document.getElementById(id + '-container');
 
-                // Check if unlocked AND within the 4 hour window
                 if (isUnlocked === 'true' && savedTime) {
                     if (Date.now() - savedTime < FOUR_HOURS) {
                         container.innerHTML = `<button onclick="copyScript('${id}')" class="btn-copy">COPY SCRIPT 📋</button>`;
                     } else {
-                        // Reset if 4 hours passed
                         localStorage.removeItem(id + '_unlocked');
                         localStorage.removeItem(id + '_time');
                     }
@@ -197,7 +192,6 @@
             alert("SCRIPT COPIED! PASTE IN EXECUTOR ❄️");
         }
 
-        // 2. SNOW SYSTEM
         const snowContainer = document.getElementById('snow-container');
         for (let i = 0; i < 50; i++) {
             let flake = document.createElement('div');
@@ -210,7 +204,6 @@
             snowContainer.appendChild(flake);
         }
 
-        // 3. HACKER SCRAMBLE
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         const titleElement = document.getElementById("scramble-title");
         const originalText = "FROSTY SCRIPTS";
