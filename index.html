@@ -4,180 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FROSTY SCRIPTS | HOME</title>
+    <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg">
+    
     <style>
         :root {
             --bg-color: #add8e6; 
             --text-main: #ffffff;
-            --box-bg: #ffffff;
+            --box-bg: rgba(255, 255, 255, 0.7); /* 1. GLASSMORPHISM BASE */
             --box-text: #1a1e26;
             --accent: #0072ff;
+            --glass-border: rgba(255, 255, 255, 0.3);
         }
 
         [data-theme="dark"] {
             --bg-color: #0b0e14; 
-            --box-bg: #1a1e26;
+            --box-bg: rgba(26, 30, 38, 0.7);
             --box-text: #ffffff;
             --text-main: #ffffff;
         }
 
+        /* 2. CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        /* 3. LOADING SCREEN */
+        #loader {
+            position: fixed;
+            width: 100%; height: 100%;
+            background: #0b0e14;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+        .load-text { font-size: 2rem; font-weight: 900; color: var(--accent); animation: pulse 1.5s infinite; }
+
         body {
-            margin: 0;
-            padding: 0 0 100px 0;
+            margin: 0; padding: 0 0 100px 0;
             background-color: var(--bg-color); 
             color: var(--text-main); 
             font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            text-transform: uppercase;
-            transition: background-color 0.5s ease;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; text-transform: uppercase;
+            overflow-x: hidden;
+        }
+
+        /* 4. ANIMATED BACKGROUND (AURORA/MATRIX) */
+        .bg-animate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: linear-gradient(125deg, #add8e6, #87ceeb, #0072ff);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
+        }
+        @keyframes aurora { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+
+        /* 6. SKELETON PULSE */
+        .skeleton { animation: skeleton-loading 1s linear infinite alternate; }
+        @keyframes skeleton-loading { from { opacity: 0.5; } to { opacity: 1; } }
+
+        /* 1. GLASSMORPHISM CLASS */
+        .glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: var(--box-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
         .top-controls {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-            z-index: 100;
+            position: fixed; top: 15px; right: 15px;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100;
+        }
+
+        /* 11. AUTO-UPDATE & 10. DEVICE DETECTION BAR */
+        .system-info {
+            font-size: 0.6rem; font-weight: 900; color: #fff;
+            background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 5px;
         }
 
         #theme-toggle {
-            background: var(--box-bg);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: var(--box-bg); border: 2px solid var(--accent);
+            border-radius: 50%; width: 45px; height: 45px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
         }
 
-        .viewer-box {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 5px 12px;
-            border-radius: 8px;
-            border-right: 3px solid var(--accent);
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .header-section {
-            width: 90%;
-            max-width: 500px;
-            text-align: left;
-            margin-top: 75px;
-        }
-
-        .yt-logo {
-            width: 85px;
-            height: 85px;
-            border-radius: 20px; 
-            border: 3px solid var(--accent);
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        .main-title { font-size: 2.3rem; font-weight: 900; margin: 0; }
+        .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 85px; }
+        .yt-logo { width: 85px; height: 85px; border-radius: 20px; border: 3px solid var(--accent); object-fit: cover; }
+        .main-title { font-size: 2.3rem; font-weight: 900; margin: 5px 0; }
         .blue-text { color: var(--accent); }
+        .sub-title { font-size: 2.1rem; margin: 20px 0; font-weight: 900; text-align: center; line-height: 1.1; }
+        .verified-info { font-size: 0.65rem; margin-bottom: 30px; font-weight: 900; text-align: center; opacity: 0.9; }
 
-        .sub-title {
-            font-size: 2.1rem; 
-            margin: 25px 0 5px 0;
-            font-weight: 900;
-            line-height: 1.1;
-            text-align: center;
-        }
-
-        .verified-info {
-            font-size: 0.65rem;
-            margin-bottom: 30px;
-            font-weight: 900;
-            text-align: center;
-            opacity: 0.95;
-            width: 100%;
-        }
-
-        .category-bar {
-            display: flex;
-            align-items: center;
-            width: 90%;
-            max-width: 400px;
-            margin: 30px 0 15px 0;
-            font-weight: 900;
-            font-size: 1.3rem;
-        }
-
+        .category-bar { display: flex; align-items: center; width: 90%; max-width: 400px; margin: 30px 0 15px 0; font-weight: 900; font-size: 1.3rem; }
         .big-pipe { font-size: 2.5rem; margin-right: 12px; color: var(--accent); }
 
-        .content-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            align-items: center;
-        }
+        .content-wrapper { display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center; }
 
         .box {
-            display: flex;
-            align-items: center;
-            background: var(--box-bg);
-            border-radius: 15px;
-            padding: 15px;
-            text-decoration: none;
-            color: var(--box-text);
-            border: 2px solid var(--accent);
-            width: 85%;
-            max-width: 380px;
+            display: flex; align-items: center; border-radius: 15px; padding: 15px;
+            text-decoration: none; color: var(--box-text); width: 85%; max-width: 380px;
+            transition: 0.3s;
         }
+        .box:hover { transform: translateY(-5px) scale(1.02); border: 1px solid var(--accent); }
 
         .box-img { width: 60px; height: 60px; border-radius: 10px; margin-right: 15px; object-fit: cover; }
         .box-title { font-weight: 900; font-size: 1rem; display: block; }
-        .box-subtext { font-size: 0.7rem; color: #777; display: block; font-weight: bold; }
+        .box-subtext { font-size: 0.7rem; color: #555; display: block; font-weight: bold; }
 
         .card {
-            background: var(--box-bg);
-            border: 2px solid var(--accent);
-            border-radius: 20px;
-            padding: 20px;
-            width: 85%;
-            max-width: 350px;
-            text-align: center;
-            color: var(--box-text);
-            margin-bottom: 20px;
+            border-radius: 20px; padding: 20px; width: 85%; max-width: 350px;
+            text-align: center; color: var(--box-text); margin-bottom: 20px;
         }
-
         .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; height: 180px; object-fit: cover; }
         
         .btn-red {
-            display: inline-block;
-            background: #ff0000;
-            color: white;
-            padding: 12px 35px;
-            text-decoration: none;
-            font-weight: 900;
-            border-radius: 50px;
-            margin-top: 10px;
+            display: inline-block; background: #ff0000; color: white; padding: 12px 35px;
+            text-decoration: none; font-weight: 900; border-radius: 50px; margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
         }
 
         .snowflake { color: #ffffff; position: fixed; z-index: -1; pointer-events: none; font-size: 1.5em; top: -10%; animation: fall 5s linear infinite; }
         @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body data-theme="light">
 
+    <div id="loader">
+        <div class="load-text">FROSTY SCRIPTS</div>
+        <p style="color:white; font-size:0.7rem; font-weight:900;">INITIALIZING BYPASSERS...</p>
+    </div>
+
+    <div class="bg-animate"></div>
     <div class="snowflake">❅</div>
 
     <div class="top-controls">
-        <button id="theme-toggle">☀️</button>
-        <div class="viewer-box">LIVE VIEWS: <span id="count">812</span></div>
+        <button id="theme-toggle" class="glass">☀️</button>
+        <div class="system-info">OS: <span id="device">DETECTING...</span></div>
+        <div class="system-info" id="update-status">CHECKING UPDATES...</div>
     </div>
 
     <div class="header-section">
@@ -188,10 +154,9 @@
     </div>
 
     <div class="content-wrapper">
-        
         <div class="category-bar"><span class="big-pipe">|</span> EXECUTORS</div>
 
-        <a href="https://delta-executor.com" class="box">
+        <a href="https://delta-executor.com" class="box glass">
             <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/images.jpeg" class="box-img">
             <div>
                 <span class="box-title">DELTA EXECUTOR</span>
@@ -199,7 +164,7 @@
             </div>
         </a>
 
-        <a href="https://wearedevs.net/exploits" class="box">
+        <a href="https://wearedevs.net/exploits" class="box glass">
             <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img">
             <div>
                 <span class="box-title">ALL-IN-ONE WEBSITE📁</span>
@@ -209,37 +174,50 @@
 
         <div class="category-bar"><span class="big-pipe">|</span> LATEST SCRIPTS</div>
 
-        <div class="card">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img">
+        <div class="card glass">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img skeleton">
             <h2 style="color:var(--accent);">[🌙MOON UPDATE⚔️] SAILOR PIECE</h2>
             <p style="font-weight:bold;">BEST SCRIPT FOR SAILOR PIECE WARRIORS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
 
-        <div class="card">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img">
+        <div class="card glass">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/noFilter.webp" class="card-img skeleton">
             <h2 style="color:var(--accent);">STEAL A BRAINROT</h2>
             <p style="font-weight:bold;">BEST SCRIPT FOR BRAINROT ENTHUSIASTS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
-
     </div>
 
     <script>
+        // 3. LOADER LOGIC
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
+            }, 1500);
+        });
+
+        // 10. DEVICE DETECTION
+        const deviceDisp = document.getElementById('device');
+        const ua = navigator.userAgent;
+        if(/Android/i.test(ua)) deviceDisp.innerText = "ANDROID";
+        else if(/iPhone|iPad/i.test(ua)) deviceDisp.innerText = "IOS";
+        else deviceDisp.innerText = "PC/WINDOWS";
+
+        // 11. AUTO UPDATE ANIMATION
+        setTimeout(() => {
+            document.getElementById('update-status').innerText = "STATUS: UP TO DATE ✅";
+        }, 3000);
+
         const toggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
-        const countEl = document.getElementById('count');
 
         toggleBtn.addEventListener('click', () => {
             const isDark = body.getAttribute('data-theme') === 'dark';
             body.setAttribute('data-theme', isDark ? 'light' : 'dark');
             toggleBtn.innerText = isDark ? '☀️' : '🌙';
         });
-
-        setInterval(() => {
-            let val = parseInt(countEl.innerText);
-            if(Math.random() > 0.8) countEl.innerText = val + 1;
-        }, 5000);
     </script>
 </body>
 </html>
