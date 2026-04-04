@@ -13,10 +13,9 @@
             --box-bg: rgba(255, 255, 255, 0.7);
             --box-text: #1a1e26;
             --accent: #0072ff;
-            --frosty-blue: #00d4ff; /* SPECIAL FROSTY BLUE */
+            --frosty-blue: #00d4ff;
             --glass-border: rgba(255, 255, 255, 0.3);
             --working-green: #28a745;
-            --hacker-green: #00ff41;
         }
 
         [data-theme="dark"] {
@@ -42,30 +41,44 @@
 
         @keyframes aurora { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
 
+        /* --- SNOWFLAKE QUANTITY & RANDOM PATH SYSTEM --- */
+        #snow-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute; top: -10%;
+            color: white; font-size: 1.2em;
+            user-select: none;
+            animation: fall linear infinite, sideSway ease-in-out infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        @keyframes sideSway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+
         .glass {
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             background: var(--box-bg); border: 1px solid var(--glass-border);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        /* UPDATED TITLE COLORS */
         .main-title { font-size: 2.3rem; font-weight: 900; margin: 5px 0; font-family: monospace; }
         .frosty-text { color: var(--frosty-blue); }
         .scripts-text { color: #ffffff; }
-
-        /* BLUE PIPE STYLING */
         .blue-pipe { color: var(--accent); font-weight: 900; font-size: 1.5rem; margin-right: 5px; }
-
-        .verified-tick {
-            background: var(--accent); color: white; font-size: 0.5rem;
-            padding: 2px 5px; border-radius: 4px; margin-left: 5px;
-            vertical-align: middle; display: inline-flex; align-items: center;
-        }
 
         .top-controls { position: fixed; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100; }
         .control-btn { background: var(--box-bg); border: 2px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
 
-        .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 85px; transition: transform 0.1s ease-out; }
+        .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 85px; }
         
         .status-container { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; font-weight: 900; font-size: 0.7rem; color: var(--working-green); }
         .dot { height: 8px; width: 8px; background-color: var(--working-green); border-radius: 50%; animation: pulse-dot 1.5s infinite; }
@@ -81,17 +94,13 @@
         .card-img { width: 100%; border-radius: 15px; margin-bottom: 15px; height: 180px; object-fit: cover; }
         
         .btn-red { display: inline-block; background: #ff0000; color: white; padding: 12px 35px; text-decoration: none; font-weight: 900; border-radius: 50px; margin-top: 10px; }
-        .snowflake { color: #ffffff; position: fixed; z-index: -1; pointer-events: none; font-size: 1.5em; top: -10%; animation: fall 5s linear infinite; }
-        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
         .hidden { display: none !important; }
     </style>
 </head>
 <body data-theme="light">
 
     <div class="bg-animate"></div>
-    <div id="snow-container"><div class="snowflake">❅</div></div>
-
-    <div class="top-controls">
+    <div id="snow-container"></div> <div class="top-controls">
         <button id="theme-toggle" class="control-btn glass">☀️</button>
         <button id="snow-toggle" class="control-btn glass">❄️</button>
     </div>
@@ -110,7 +119,7 @@
         <a href="https://delta-executor.com" class="box glass">
             <img src="https://raw.githubusercontent.com/sigmachan7/Sab/refs/heads/main/images.jpeg" class="box-img">
             <div>
-                <span style="font-weight: 900; font-size: 1rem;">DELTA EXECUTOR <span class="verified-tick">VERIFIED ✓</span></span>
+                <span style="font-weight: 900; font-size: 1rem;">DELTA EXECUTOR</span>
                 <span style="font-size: 0.7rem; opacity: 0.7; font-weight: bold;">THE BEST MOBILE EXECUTOR👆</span>
             </div>
         </a>
@@ -141,7 +150,22 @@
     </div>
 
     <script>
-        // HACKER SCRAMBLE LOGIC
+        // --- IMPROVED SNOW SYSTEM ---
+        const snowContainer = document.getElementById('snow-container');
+        const flakeCount = 50; // MORE SNOWFLAKES
+
+        for (let i = 0; i < flakeCount; i++) {
+            let flake = document.createElement('div');
+            flake.className = 'snowflake';
+            flake.innerHTML = ['❅', '❄', '❆'][Math.floor(Math.random() * 3)];
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.opacity = Math.random();
+            flake.style.animationDuration = (Math.random() * 3 + 2) + 's, ' + (Math.random() * 2 + 1) + 's'; // FALL SPEED & SWAY SPEED
+            flake.style.animationDelay = Math.random() * 5 + 's';
+            snowContainer.appendChild(flake);
+        }
+
+        // HACKER SCRAMBLE
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         const titleElement = document.getElementById("scramble-title");
         const originalText = "FROSTY SCRIPTS";
@@ -163,10 +187,8 @@
         }
         window.onload = scramble;
 
-        // SNOW TOGGLE
-        document.getElementById('snow-toggle').onclick = () => document.getElementById('snow-container').classList.toggle('hidden');
-
-        // THEME TOGGLE
+        // CONTROLS
+        document.getElementById('snow-toggle').onclick = () => snowContainer.classList.toggle('hidden');
         document.getElementById('theme-toggle').onclick = function() {
             const isDark = document.body.getAttribute('data-theme') === 'dark';
             document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
