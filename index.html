@@ -5,12 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FROSTY SCRIPTS | HOME</title>
     <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            --bg-color: #add8e6; /* Light Blue */
+            --text-main: #ffffff;
+            --box-bg: #ffffff;
+            --box-text: #1a1e26;
+            --accent: #0072ff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0b0e14; /* Deep Navy/Black */
+            --box-bg: #1a1e26;
+            --box-text: #ffffff;
+            --text-main: #ffffff;
+        }
+
         /* BASE SETUP */
         body {
             margin: 0;
             padding: 20px;
-            background-color: #add8e6; 
-            color: WHITE; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
             font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
@@ -18,7 +34,30 @@
             min-height: 100vh;
             overflow-x: hidden;
             text-transform: uppercase;
+            transition: background-color 0.5s ease;
         }
+
+        /* --- THEME TOGGLE BUTTON --- */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--box-bg);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 114, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #theme-toggle:active { transform: scale(0.9); }
 
         /* --- HEADER SECTION --- */
         .header-section {
@@ -33,10 +72,9 @@
             width: 80px;
             height: 80px;
             border-radius: 20px; 
-            border: 3px solid #0072ff;
+            border: 3px solid var(--accent);
             object-fit: cover;
             margin-bottom: 10px;
-            box-shadow: 0 0 15px rgba(0, 114, 255, 0.4);
         }
 
         .main-title {
@@ -46,8 +84,7 @@
             white-space: nowrap;
         }
 
-        .blue-text { color: #0072ff; }
-        .white-text { color: #ffffff; }
+        .blue-text { color: var(--accent); }
 
         .sub-title {
             font-size: 2.2rem; 
@@ -65,7 +102,6 @@
             font-weight: bold;
             opacity: 0.9;
             white-space: nowrap;
-            text-align: left;
         }
 
         /* --- CATEGORY BAR --- */
@@ -84,7 +120,7 @@
         .big-pipe {
             font-size: 2.5rem;
             margin-right: 12px;
-            color: #0072ff;
+            color: var(--accent);
         }
 
         /* --- ANIMATIONS --- */
@@ -112,26 +148,27 @@
         .box {
             display: flex;
             align-items: center;
-            background: WHITE;
+            background: var(--box-bg);
             border-radius: 15px;
             padding: 12px;
             text-decoration: none;
-            color: #1a1e26;
+            color: var(--box-text);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             animation: slowHeartbeat 3s ease-in-out infinite;
-            border: 2px solid #0072ff;
+            border: 2px solid var(--accent);
             width: 90%;
             max-width: 400px;
+            transition: background 0.3s, color 0.3s;
         }
 
         .box-img { width: 65px; height: 65px; border-radius: 10px; object-fit: cover; margin-right: 15px; }
         .box-title { font-weight: 900; font-size: 1.1rem; display: block; }
-        .box-subtext { font-size: 0.8rem; color: #555; display: block; font-weight: bold; }
+        .box-subtext { font-size: 0.8rem; color: #888; display: block; font-weight: bold; }
 
         /* --- SCRIPT CARDS --- */
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid #0072ff;
+            background: var(--box-bg);
+            border: 2px solid var(--accent);
             border-radius: 20px;
             padding: 15px;
             width: 90%;
@@ -139,8 +176,9 @@
             text-align: center;
             position: relative;
             animation: slowHeartbeat 3s ease-in-out infinite;
-            color: #1a1e26;
+            color: var(--box-text);
             margin-bottom: 15px;
+            transition: background 0.3s, color 0.3s;
         }
 
         .card-img { width: 100%; border-radius: 12px; margin-bottom: 10px; }
@@ -157,7 +195,7 @@
 
         .status-badge {
             position: absolute; top: 12px; right: 12px;
-            background: WHITE; padding: 4px 10px; border-radius: 20px;
+            background: var(--box-bg); padding: 4px 10px; border-radius: 20px;
             font-size: 0.7rem; font-weight: 900; color: #28a745; 
             border: 1.5px solid #28a745;
             display: flex; align-items: center;
@@ -171,51 +209,60 @@
             animation: dotGlow 1.5s infinite ease-in-out;
         }
 
-        h2 { margin: 8px 0; font-size: 1.3rem; color: #0072ff; font-weight: 900; }
-        p { color: #444; font-weight: 700; margin: 5px 0; font-size: 0.85rem; }
+        h2 { margin: 8px 0; font-size: 1.3rem; color: var(--accent); font-weight: 900; }
+        p { color: var(--box-text); opacity: 0.8; font-weight: 700; margin: 5px 0; font-size: 0.85rem; }
 
-        /* --- HIGH SPAWN RATE SNOW --- */
-        .snowflake { 
+        /* --- SNOW & STARS --- */
+        .snowflake, .star { 
             color: #ffffff; 
-            font-size: 1.5em; 
             position: fixed; 
             top: -10%; 
             z-index: 1; 
             pointer-events: none; 
-            animation: fall linear infinite; 
         }
+
+        .snowflake { font-size: 1.5em; animation: fall linear infinite; }
+        
+        .star {
+            font-size: 0.5em;
+            top: unset;
+            display: none; /* Hidden by default */
+        }
+
+        [data-theme="dark"] .star { display: block; animation: twinkle 2s infinite ease-in-out; }
+        [data-theme="dark"] .snowflake { opacity: 0.5; } /* Less snow in dark mode */
 
         @keyframes fall { 
             0% { top: -10%; transform: translateX(0); } 
             100% { top: 110%; transform: translateX(var(--drift)); } 
         }
-        
-        /* SNOWFLAKE POSITIONS AND DELAYS */
-        .snowflake:nth-of-type(1) { left: 5%; --drift: 50px; animation-duration: 4s; animation-delay: 0s; }
-        .snowflake:nth-of-type(2) { left: 15%; --drift: -30px; animation-duration: 5s; animation-delay: 1.5s; }
-        .snowflake:nth-of-type(3) { left: 25%; --drift: 40px; animation-duration: 4.5s; animation-delay: 3s; }
-        .snowflake:nth-of-type(4) { left: 35%; --drift: -50px; animation-duration: 6s; animation-delay: 0.5s; }
-        .snowflake:nth-of-type(5) { left: 45%; --drift: 20px; animation-duration: 5.5s; animation-delay: 2s; }
-        .snowflake:nth-of-type(6) { left: 55%; --drift: -40px; animation-duration: 4.2s; animation-delay: 4s; }
-        .snowflake:nth-of-type(7) { left: 65%; --drift: 60px; animation-duration: 5s; animation-delay: 1s; }
-        .snowflake:nth-of-type(8) { left: 75%; --drift: -20px; animation-duration: 4.8s; animation-delay: 2.5s; }
-        .snowflake:nth-of-type(9) { left: 85%; --drift: 35px; animation-duration: 5.2s; animation-delay: 0.2s; }
-        .snowflake:nth-of-type(10) { left: 95%; --drift: -55px; animation-duration: 4.5s; animation-delay: 3.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* STAGGERED ELEMENTS */
+        .snowflake:nth-of-type(1) { left: 10%; --drift: 40px; animation-duration: 4s; }
+        .snowflake:nth-of-type(2) { left: 50%; --drift: -30px; animation-duration: 5s; animation-delay: 2s; }
+        .snowflake:nth-of-type(3) { left: 80%; --drift: 20px; animation-duration: 4.5s; animation-delay: 1s; }
+
+        .star:nth-of-type(4) { top: 15%; left: 20%; animation-delay: 0.2s; }
+        .star:nth-of-type(5) { top: 40%; left: 75%; animation-delay: 1.1s; }
+        .star:nth-of-type(6) { top: 70%; left: 10%; animation-delay: 0.5s; }
+        .star:nth-of-type(7) { top: 85%; left: 90%; animation-delay: 1.8s; }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <div class="snowflake">❅</div><div class="snowflake">❄</div><div class="snowflake">❆</div>
-    <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
-    <div class="snowflake">❄</div><div class="snowflake">❅</div><div class="snowflake">❆</div>
-    <div class="snowflake">❄</div>
+    <div class="star">⭐</div><div class="star">⭐</div><div class="star">⭐</div><div class="star">⭐</div>
+
+    <button id="theme-toggle" title="Toggle Theme">☀️</button>
 
     <div class="header-section">
         <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" class="yt-logo" alt="LOGO">
-        
-        <h1 class="main-title">
-            <span class="blue-text">FROSTY</span> <span class="white-text">SCRIPTS</span>
-        </h1>
+        <h1 class="main-title"><span class="blue-text">FROSTY</span> <span class="white-text">SCRIPTS</span></h1>
         
         <div class="sub-title">
             <span class="white-text">EXPERIENCE THE</span><br>
@@ -223,37 +270,24 @@
             <span class="white-text">SCRIPTING</span>
         </div>
         
-        <p class="small-info">
-            VERIFIED, SAFE-TO-USE AND COMPATABLE WITH ALL DEVICES
-        </p>
+        <p class="small-info">VERIFIED, SAFE-TO-USE AND COMPATABLE WITH ALL DEVICES</p>
     </div>
 
     <div class="container">
-        
         <div class="category-bar">
-            <span class="big-pipe">|</span> 
-            <span class="white-text">EXECUTORS DOWNLOAD LINKS</span>
+            <span class="big-pipe">|</span> <span class="white-text">EXECUTORS DOWNLOAD LINKS</span>
         </div>
 
         <a href="https://wearedevs.net/exploits" class="box">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img" alt="MASTER">
+            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/unnamed.png" class="box-img">
             <div>
                 <span class="box-title">ALL-IN-ONE EXECUTOR WEBSITE📁</span>
                 <span class="box-subtext">EVERY BEST EXECUTORS HERE👆</span>
             </div>
         </a>
 
-        <a href="https://www.mediafire.com/file/3oc1hkcs4kdiqu4/Delta-Executor-v2.713.apk/file" class="box">
-            <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/images.jpeg" class="box-img" alt="DELTA">
-            <div>
-                <span class="box-title">DELTA EXECUTOR🚀</span>
-                <span class="box-subtext">WORKS ON ALL DEVICES</span>
-            </div>
-        </a>
-
         <div class="category-bar">
-            <span class="big-pipe">|</span> 
-            <span class="white-text">BEST SCRIPTS</span>
+            <span class="big-pipe">|</span> <span class="white-text">BEST SCRIPTS</span>
         </div>
 
         <div class="card">
@@ -263,16 +297,22 @@
             <p>BEST SCRIPT FOR BRAINROT ENTHUSIASTICS</p>
             <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
         </div>
-
-        <div class="card">
-            <div class="status-badge"><div class="green-dot"></div> WORKING</div>
-            <img src="https://raw.githubusercontent.com/sigmachan7/Sp/refs/heads/main/noFilter%20(1).webp" class="card-img">
-            <h2>[🌙Moon Update⚔️] SAILOR PIECE</h2>
-            <p>BEST SCRIPT FOR SAILOR PIECE WARRIORS</p>
-            <a href="https://sub2unlock.io/nIMeB" class="btn-red">SUB TO UNLOCK🔓</a>
-        </div>
-
     </div>
 
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.innerText = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.innerText = '☀️';
+            }
+        });
+    </script>
 </body>
 </html>
