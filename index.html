@@ -38,6 +38,22 @@
             transition: background 0.5s ease;
         }
 
+        /* 5. NEWS TICKER (LEFT TO RIGHT) */
+        .ticker-wrap {
+            position: fixed; top: 0; left: 0; width: 100%; height: 30px;
+            background: rgba(0, 0, 0, 0.8); z-index: 1001; overflow: hidden;
+            border-bottom: 1px solid var(--accent); display: flex; align-items: center;
+        }
+        .ticker-move {
+            white-space: nowrap; display: inline-block;
+            animation: tickerMove 20s linear infinite;
+            font-family: monospace; font-size: 0.8rem; font-weight: bold; color: var(--hacker-green);
+        }
+        @keyframes tickerMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
         .bg-animate {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2; background: var(--bg-gradient);
@@ -53,15 +69,15 @@
 
         .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: var(--box-bg); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); }
 
-        .main-title { font-size: 2.3rem; font-weight: 900; margin: 5px 0; font-family: monospace; }
+        .main-title { font-size: 2.3rem; font-weight: 900; margin: 5px 0; font-family: monospace; letter-spacing: 2px; }
         .frosty-text { color: var(--frosty-blue); }
         .scripts-text { color: #ffffff; }
         .blue-pipe { color: var(--accent); font-weight: 900; font-size: 1.5rem; margin-right: 5px; }
 
-        .top-controls { position: fixed; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100; }
+        .top-controls { position: fixed; top: 40px; right: 15px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 100; }
         .control-btn { background: var(--box-bg); border: 2px solid var(--accent); border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
 
-        .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 85px; }
+        .header-section { width: 90%; max-width: 500px; text-align: left; margin-top: 110px; }
         
         .status-container { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; font-weight: 900; font-size: 0.7rem; color: var(--working-green); }
         .dot { height: 8px; width: 8px; background-color: var(--working-green); border-radius: 50%; animation: pulse-dot 1.5s infinite; }
@@ -79,12 +95,41 @@
         .script-bio { font-size: 0.6rem; opacity: 0.7; font-weight: bold; margin-bottom: 10px; }
 
         .btn-red { display: inline-block; background: #ff0000; color: white; padding: 12px 35px; text-decoration: none; font-weight: 900; border-radius: 50px; margin-top: 10px; cursor: pointer; border:none; width: 100%; }
-        .btn-copy { display: inline-block; background: #0072ff; color: white; padding: 12px 35px; border: none; font-weight: 900; border-radius: 50px; margin-top: 10px; cursor: pointer; width: 100%; }
         
+        /* 6. HACKER COPY BUTTON */
+        .btn-copy { 
+            display: inline-block; background: #0072ff; color: white; padding: 12px 35px; border: none; 
+            font-weight: 900; border-radius: 50px; margin-top: 10px; cursor: pointer; width: 100%;
+            transition: 0.2s; font-family: monospace;
+        }
+        .btn-copy.hacker-active { background: #000 !important; color: var(--hacker-green) !important; border: 1px solid var(--hacker-green); }
+
+        #custom-menu {
+            position: fixed; display: none; z-index: 2000; width: 220px;
+            background: var(--box-bg); backdrop-filter: blur(15px);
+            border: 2px solid var(--accent); border-radius: 10px; padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); color: var(--box-text);
+            text-align: center; font-weight: 900; font-size: 0.8rem;
+        }
+        .menu-item { padding: 8px; border-bottom: 1px solid var(--glass-border); }
+        .menu-item:last-child { border: none; color: #ff0000; }
+
         .hidden { display: none !important; }
     </style>
 </head>
 <body data-theme="light">
+
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            [UPDATE]: SAILOR PIECE ICE MODE ACTIVE • NEW EXECUTOR LIST ADDED • FOLLOW @FROSTYSCRIPTS67 ON YT • STAY CHILL BOZO • [UPDATE]: SAILOR PIECE ICE MODE ACTIVE
+        </div>
+    </div>
+
+    <div id="custom-menu">
+        <div class="menu-item" style="color:var(--accent);">❄️ FROSTY SCRIPTS ❄️</div>
+        <div class="menu-item">STAY CHILL BOZO</div>
+        <div class="menu-item">L+RATIO BOZO TRYNA COPY MY SITE</div>
+    </div>
 
     <div class="bg-animate"></div>
     <div id="snow-container"></div>
@@ -94,7 +139,7 @@
         <button id="snow-toggle" class="control-btn glass">❄️</button>
     </div>
 
-    <div class="header-section" id="parallax-header">
+    <div class="header-section">
         <img src="https://raw.githubusercontent.com/sigmachan7/Delta/refs/heads/main/Screenshot_2026-04-03-20-06-18-08_96b26121e545231a3c569311a54cda96.jpg" style="width: 85px; height: 85px; border-radius: 20px; border: 3px solid var(--accent); object-fit: cover;">
         <h1 class="main-title" id="scramble-title">
             <span class="frosty-text">FROSTY</span> <span class="scripts-text">SCRIPTS</span>
@@ -145,6 +190,17 @@
     </div>
 
     <script>
+        // 1. MENU LOGIC
+        const menu = document.getElementById('custom-menu');
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            menu.style.display = 'block';
+            menu.style.left = `${e.pageX}px`;
+            menu.style.top = `${e.pageY}px`;
+        });
+        document.addEventListener('click', () => { menu.style.display = 'none'; });
+
+        // 2. SCRIPT LOGIC
         const SCRIPT_DATA = {
             'sailor': 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/piRiVaGqEd/0"))()',
             'brainrot': 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/7grTOcqFnx/0"))()'
@@ -154,7 +210,6 @@
             window.open(ytLink, '_blank');
             const container = document.getElementById(id + '-container');
             container.innerHTML = `<button class="btn-red" style="background:#555; cursor:wait;">VERIFYING... (15s) ⏳</button>`;
-
             setTimeout(() => {
                 localStorage.setItem(id + '_unlocked', 'true');
                 localStorage.setItem(id + '_time', Date.now());
@@ -168,23 +223,38 @@
                 const isUnlocked = localStorage.getItem(id + '_unlocked');
                 const savedTime = localStorage.getItem(id + '_time');
                 const container = document.getElementById(id + '-container');
-
                 if (isUnlocked === 'true' && savedTime) {
                     if (Date.now() - savedTime < FOUR_HOURS) {
-                        container.innerHTML = `<button onclick="copyScript('${id}')" class="btn-copy">COPY SCRIPT 📋</button>`;
-                    } else {
-                        localStorage.removeItem(id + '_unlocked');
-                        localStorage.removeItem(id + '_time');
+                        container.innerHTML = `<button onclick="copyScript(this, '${id}')" class="btn-copy">COPY SCRIPT 📋</button>`;
                     }
                 }
             });
         }
 
-        function copyScript(id) {
+        // 6. HACKER TYPING FOR COPY BUTTON
+        function copyScript(btn, id) {
             navigator.clipboard.writeText(SCRIPT_DATA[id]);
-            alert("SCRIPT COPIED! PASTE IN EXECUTOR ❄️");
+            const originalText = "COPY SCRIPT 📋";
+            const targetText = "COPIED TO CLIPBOARD ✅";
+            
+            btn.classList.add('hacker-active');
+            let i = 0;
+            btn.innerText = "";
+            
+            const typing = setInterval(() => {
+                btn.innerText += targetText[i];
+                i++;
+                if (i >= targetText.length) {
+                    clearInterval(typing);
+                    setTimeout(() => {
+                        btn.classList.remove('hacker-active');
+                        btn.innerText = originalText;
+                    }, 2000);
+                }
+            }, 50); // Speed for "Copied to Clipboard" typing
         }
 
+        // 3. VISUALS
         const snowContainer = document.getElementById('snow-container');
         for (let i = 0; i < 50; i++) {
             let flake = document.createElement('div');
@@ -197,10 +267,11 @@
             snowContainer.appendChild(flake);
         }
 
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
         const titleElement = document.getElementById("scramble-title");
         const originalText = "FROSTY SCRIPTS";
 
+        // SLOWER SCRAMBLE SPEED
         function scramble() {
             let iteration = 0;
             const interval = setInterval(() => {
@@ -208,18 +279,14 @@
                     if (index < iteration) {
                         return index < 6 ? `<span class="frosty-text">${originalText[index]}</span>` : `<span class="scripts-text">${originalText[index]}</span>`;
                     }
-                    return `<span style="color:#00ff41">${letters[Math.floor(Math.random() * 26)]}</span>`;
+                    return `<span style="color:#00ff41">${letters[Math.floor(Math.random() * letters.length)]}</span>`;
                 }).join("");
                 if (iteration >= originalText.length) clearInterval(interval);
-                iteration += 1/3;
-            }, 30);
+                iteration += 1/6; // LOWERED SPEED (Was 1/3)
+            }, 80); // INCREASED DELAY (Was 30)
         }
 
-        window.onload = () => {
-            scramble();
-            renderButtons();
-        };
-
+        window.onload = () => { scramble(); renderButtons(); };
         document.getElementById('snow-toggle').onclick = () => snowContainer.classList.toggle('hidden');
         document.getElementById('theme-toggle').onclick = function() {
             const isDark = document.body.getAttribute('data-theme') === 'dark';
